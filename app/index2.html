@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Part Time Job Seeker</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script> <!-- For Tether.io error fixing -->
+    <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script> <!-- For Tether.io error fixing -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/bootstrap-4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/stylesprofile.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
+    <link rel="stylesheet" href="app.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color: #00A9A5">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h3 class="navbar-brand nav-link" href="#!/view1">Part Time Job Seeker</h3>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#!/view1">Home<span class="sr-only">(current)</span></a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="#!/profilepage">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#!/view2">View Sementara</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="text" placeholder="I want to work as ..">
+            <button class="btn btn-success btn-lg" type="submit">Search</button>
+          </form>
+        </ul>
+        <ul class="navbar-nav mr-auto">	
+          <li class="nav-item">
+            <a class="nav-link" href="#!/faqs">FAQ's</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#!/termofservices">Term Of Services</a>
+          </li>
+          <button class="nav-item">
+            <a class="nav-link" href="#!/loginpage"><strong>Login</strong></a>
+          </button>
+          <button class="nav-item">
+            <a class="nav-link" href="#!/register"><strong>SignUp</strong></a>
+          </button>
+          <button class="nav-item" ng-controller="loginAuthServiceCtrl">
+            <a class="nav-link" ng-click="logout()" ><strong>Logout</strong></a>
+          </button>
+         
+        </ul>
+      </div>
+    </nav>
+
+    <!--Content Here-->
+    <div ng-view></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Content Here-->
+
+    
+  <!--   <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer> -->
+    
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="assets/js/profilepage.js"></script>
+    <script src="assets/js/studentregister.js"></script>
+    <script src="assets/js/popover.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/logintabbed.js"></script>
+    <script src="assets/js/registertabbed.js"></script>
+    <script src="assets/js/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="app.js"></script>
+
+    <script src="view1/view1.js"></script>
+    <script src="view2/view2.js"></script>
+    <script src="views/termofservices/termofservices.js"></script>
+    <script src="views/faqs/faqs.js"></script>
+    <script src="views/filterjobresult/filterjobresult.js"></script>
+    <script src="views/profilepage/profilepage.js"></script>
+    <script src="views/companyprofile/companyprofile.js"></script>
+    <script src="views/jobdetail/jobdetail.js"></script>
+    <script src="views/register/register.js"></script>
+    <script src="views/composemail/composemail.js"></script>
+    <script src="views/mailbox/mailbox.js"></script>
+    <script src="views/addmorejob/addmorejob.js"></script>
+    <script src="views/editprofile/editprofile.js"></script>
+    <script src="views/filterworkerresult/filterworkerresult.js"></script>
+    <script src="views/profilestudents/profilestudents.js"></script>
+    <script src="views/loginpage/loginpage.js"></script>
+    <script src="views/editcompanyprofile/editcompanyprofile.js"></script>
+
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+
+    <script src="controller/test-cont.js"></script>
+    <script src="controller/http-cont.js"></script>
+    <script src="controller/jobs-cont.js"></script>
+    <script src="controller/news-cont.js"></script>
+    <script src="controller/workers-cont.js"></script>
+    <script src="controller/register-cont.js"></script>
+    <script src="controller/submit-cont.js"></script>
+    <script src="controller/post-cont.js"></script>
+
+    <script src="services/student-register-service.js"></script>
+    <script src="services/employer-register-service.js"></script>
+    <script src="services/addmore-jobs-service.js"></script>
+    <script src="services/compose-mail-service.js"></script>
+    <script src="services/getAll-student-service.js"></script>
+    <script src="services/getAll-employer-service.js"></script>
+    <script src="services/getAll-companies-service.js"></script>
+    <script src="services/login-auth-service.js"></script>
+    <script src="services/getMy-profile-service.js"></script>
+    <script src="services/getMy-company-service.js"></script>
+    <script src="services/edit-profile-service.js"></script>
+    <script src="services/edit-profile-company-service.js"></script>
+    <script src="services/sessionService.js"></script>
+  </body>
+</html>

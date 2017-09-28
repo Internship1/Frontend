@@ -1,0 +1,35 @@
+<div>
+    <h1 style="margin-top: 10px;">
+      <ul>
+          <li>
+            <a href="#/view1" class="glyphicon glyphicon-home">
+            </a></li>
+            <li>/</li>
+          <li>Jobs</li>
+          
+         
+      </ul>
+    </h1>
+    <hr> 
+  </div>
+
+<div class="container-cards" ng-controller="jobCards">
+  <div class="row">
+    <div class="card col-sm-6 col-md-4 col-lg-3 mt-4" style="width: 20rem; margin-left: 30px; margin-top: 10px" ng-repeat="job in jobs">
+        <img class="card-img-top" src="assets/img/boardinglabs.png" alt="Company's Avatar">
+        <div class="card-block">
+            <h2 class="card-title">{{ job.companyName }}</h2>
+            <p class="card-text">{{ job.companyAddress }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ job.companyDescription }}</li>
+            <li class="list-group-item">{{ job.companyContact }}<br>{{ job.Email }}</li>
+            <li class="list-group-item"><strong>{{ job.companyJobAvail }}</strong></li>
+        </ul>
+        <div class="card-block">
+            <a href="#!/jobdetail" class="card-link">Detail</a>
+            <a href="#" class="card-link">Report</a>
+        </div>
+    </div>
+  </div>
+</div>

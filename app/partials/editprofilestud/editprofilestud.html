@@ -1,0 +1,132 @@
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <ul class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                   <li><a href="#!/studentprofile">Student Profile</a><i class="icon-angle-right"></i></li>
+                  <li class="active">Edit</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section id="content">
+    <div class="container">
+            <div class="row">
+          <!-- Horizontal Form -->
+          <div class="col-md-1"></div>
+          <div class="col-md-9">
+          <div class="box box-info">
+            <div class="box-header with-border" ng-init="getMyProfileServiceCtrl" ng-controller="editStudentProfileServiceCtrl">
+              <h3 class="box-title" align="center">EDIT PROFILE as student</h3>
+              <img class="avatar center" src="assets/img/avatar.png" alt=""  />
+              <br>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" ng-controller="editStudentProfileServiceCtrl">
+              <div class="box-body" >
+                <div class="form-group">
+                  <label for="full_name"  class="col-sm-2 control-label">Full Name</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="fullname" ng-model="full_name" placeholder="">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email" class="col-sm-2 control-label">Email</label>
+
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" name="email" ng-model="email" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="gender" class="col-sm-2 control-label">Gender</label>
+                  <div class="col-sm-10">
+                    <input type="radio" ng-model="gender" value="Male" required>  Male <br/>
+                    <input type="radio" ng-model="gender" value="Female" required> Female <br/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="username" class="col-sm-2 control-label">Username</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="username" ng-model="username" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="pwd" class="col-sm-2 control-label">Password</label>
+
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" ng-model="password" placeholder="Password">
+                  </div>
+                </div>
+                
+              </div>
+              <br>
+              <br>
+              <hr>
+              <br>
+              
+              <div class="box-body" >
+              <h4>Informations Details</h4>
+                <!--<div class="form-group">
+                  <label for="description"  class="col-sm-2 control-label">Descriptions</label>
+
+                  <div class="col-sm-10">
+                  <textarea class="form-control" name="description" ng-model="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
+                  </div>
+                </div>-->
+                
+                <div class="form-group">
+                  <label for="contact" class="col-sm-2 control-label">Contact</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="contact" ng-model="contact" placeholder="Email">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="address" class="col-sm-2 control-label">Address</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="address" ng-model="address" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="pwd" class="col-sm-2 control-label">Qualifies</label>
+
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" ng-model="password" placeholder="Password">
+                  </div>
+                </div>
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="text-right">
+               <button type="button" class="btn btn-theme" value="Send" ng-click="editProfile(full_name, email, gender, username, password, contact, address)">Edit</button>
+                
+                <button type="submit" class="btn btn-theme">Cancel</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+            <h2> {{ loginMsg }} <strong> {{loginMsgRedirect}} </strong> </h2>
+            <p> {{ regMsg }} </p>
+          </div>
+          </div>
+          <div class="col-md-3"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br><br>
+            
+        </div>
+    </section>

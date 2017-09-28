@@ -1,0 +1,44 @@
+<p>This is the partial for view 2.</p>
+
+<p>Untuk student profile sementara : <a class="nav-link" href="#!/profilepage">Student's Profile</a></p>
+<p>Untuk company profile sementara : <a class="nav-link" href="#!/companyprofile">Company Profile</a></p>
+<p>Untuk register sementara : <a class="nav-link" href="#!/register">Register</a></p>
+<p>Untuk mailbox sementara : <a class="nav-link" href="#!/mailbox">Mailbox</a></p>
+<p>Untuk compose mail sementara : <a class="nav-link" href="#!/composemail">Compose Mail</a></p>
+<p>Untuk add more job sementara : <a class="nav-link" href="#!/addmorejob">Add More Job</a></p>
+<p>Untuk edit profile job sementara : <a class="nav-link" href="#!/editprofile">Edit Profile</a></p>
+<p>Untuk filter worker result sementara : <a class="nav-link" href="#!/filterworkerresult">Filter Worker Result</a></p>
+<br>
+<br>
+<br>
+<hr>
+<!-- <div ng-controller="httpController">
+	<p>Response Status : {{ myStatus }}</p>
+	<form ng-submit="submit()" ng-controller="ExampleController">
+	  Enter text and hit enter:
+	  <input type="text" ng-model="text" name="text" />
+	  <input type="submit" id="submit" value="Submit" />
+	  <pre>list={{list}}</pre>
+	</form>
+</div>
+<hr> -->
+<div ng-controller="postserviceCtrl">
+	<div>
+		Name : <input ng-model="name" /><br/><br/>
+		Age : <input ng-model="age" /><br/><br/>
+		Adress : <input ng-model="adress" /><br/><br/>
+		<input type="button" value="Send" ng-click="postdata(name, age, adress)" /> <br/><br/>
+	</div>
+	<p>Output Message :{{msgStatus}} {{msg}} </p>
+	<p>StatusCode: {{statusval}} </p>
+	<p>Status: {{statustext}} </p>
+	<p>Response Headers: {{headers}} </p>
+</div>
+<hr>
+
+<br>
+<br>
+<p>
+  Showing of 'interpolate' filter:
+  {{ 'Current version is v%VERSION%.' | interpolate }}
+</p>

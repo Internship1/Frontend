@@ -1,0 +1,49 @@
+<div class="add-more-job">
+  <br>
+  <h1>Add More Job</h1>
+  <hr>
+  <div class="container" ng-controller="addMoreJobsCtrl">
+    <form>
+        <div class="form-group">
+        <label>Job Type :</label>
+        <input class="form-control" ng-model="job_type" placeholder="eg. Waitrees, Sales, etc.">
+        </div>
+        <label for="pwd">Job Description :</label>
+        <textarea class="form-control" ng-model="job_description" placeholder="Enter detail of the Job here .." rows="4"></textarea>
+        <div class="form-group">
+        <label>Job Facilities :</label>
+        <textarea class="form-control" ng-model="job_facilities" placeholder="eg. Rooms, Superannuation, etc." rows="4" ></textarea>
+        </div>
+        <div class="form-group">
+        <label>Job Location :</label>
+        <textarea class="form-control" ng-model="job_position" placeholder="eg. Where will the workers work" rows="4"></textarea>
+        </div>
+
+        <br>
+        <div class="form-group">
+        <label>Employer ID :</label>
+        <input class="form-control" ng-model="employer_id" placeholder="emp id">
+        </div>
+        <div class="form-group">
+        <label>Job Status :</label>
+        <input class="form-control" ng-model="job_status" placeholder="job stat">
+        </div>
+        <div class="form-group">
+        <label>Qualify ID :</label>
+        <input class="form-control" ng-model="qualify_id" placeholder="qualify id">
+        </div>
+
+        <fieldset>
+            <legend>Please select the following Job Qualification :</legend>
+            <input type="checkbox" name="qualification" value="Gender">Male<br>
+            <input type="checkbox" name="qualification" value="Gender">Female<br>
+        </fieldset>
+
+        <input type="button" value="Send" ng-click="postMoreJobs(job_type, job_description, job_facilities, job_position, employer_id, job_status, qualify_id)">
+
+        <br><br>
+        <h1>{{ regMsg }}</h1>
+        <h1>{{ regMsgStatus }}</h1>
+    </form>
+</div>
+</div>

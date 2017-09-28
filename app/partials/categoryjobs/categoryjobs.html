@@ -1,0 +1,115 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Browse Jobs</li>
+          <li class="active">Categories</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section id="content">
+  <div class="container" ng-controller="getAllJobsCtrl">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="big-cta">
+          <div class="cta-text">
+            <h2><span>TIPE KETEGORI</span></h2>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col-lg-4" ng-repeat="job in jobs | filter:q">
+          <div class="row">
+            <div class="box">
+              <div class="box-gray ">
+                <h5 class="aligncenter">{{job.job_type.type_name}}</h5>
+                <div class="icon">
+                <img src="assets/img/boarding_labs.png" class="aligncenter">
+                <br>
+                <br>
+                </div>
+                <a href=""  ><i class="fa fa-suitcase"></i> {{ job.employer.company.company_name}}</a><br>
+                <i class="fa fa-map-marker"></i>   {{job.job_position}}<br>
+                <i class="fa fa-phone-square"></i> {{job.employer.company.company_contact}}<br>
+                <i class="fa fa-calendar"></i> {{job.created_at}}<br>
+              </div>
+              <div class="box-bottom">
+                <a ng-click="postApply(job.id)">Apply</a>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div id="pagination">
+          <span class="all">Page 1 of 3</span>
+          <span class="current">1</span>
+          <a href="#" class="inactive">2</a>
+          <a href="#" class="inactive">3</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <aside class="right-sidebar">
+        <div class="widget">
+          <form class="form-search">
+            <input class="form-control" type="text" ng-model="q" placeholder="Search..">
+          </form>
+        </div>
+        <div class="widget" ng-controller="getAllJobsCtrl">
+          <h5 class="widgetheading">Jobs Categories</h5>
+          <ul class="cat">
+            <li  ng-repeat="j in jb"><i class="icon-angle-right"></i><a href="#!/categoryjob/{{j.jobtype_id}}"  >{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
+             <!--ng-click="getType(j.jobtype_id)"<li ><i class="icon-angle-right"></i><a href="#">Shopkeeper</a><span> (11)</span></li>
+           <li><i class="icon-angle-right"></i><a href="#">Model/Endorsement</a><span> (9)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">promotor/sales</a><span> (12)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">Blog Writter</a><span> (18)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">Babysitter</a><span> (9)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">Graphic Designer</a><span> (12)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">Private Teacher</a><span> (18)</span></li>
+            <li><i class="icon-angle-right"></i><a href="#">Copy Writter</a><span> (18)</span></li>-->
+          </ul>
+        </div>
+        <div class="widget">
+          <h5 class="widgetheading">Latest posts</h5>
+          <ul class="recent">
+            <li>
+            <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
+            <h6><a href="#">CV. Boarding Labs Teknologi Indonesia</a></h6>
+            <p>
+               Mazim alienum appellantur eu cu ullum officiis pro pri
+            </p>
+            </li>
+            <li>
+            <a href="#"><img src="assets/img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
+            <h6><a href="#">PT. Pos Logistik</a></h6>
+            <p>
+               Mazim alienum appellantur eu cu ullum officiis pro pri
+            </p>
+            </li>
+            <li>
+            <a href="#"><img src="assets/img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
+            <h6><a href="#">PT. Aerofood Indonesia</a></h6>
+            <p>
+               Mazim alienum appellantur eu cu ullum officiis pro pri
+            </p>
+            </li>
+          </ul>
+        </div>
+        <div class="widget">
+          <h5 class="widgetheading">Popular tags</h5>
+          <ul class="tags">
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Trends</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Internet</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Development</a></li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  </section>

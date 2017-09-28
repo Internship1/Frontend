@@ -1,0 +1,24 @@
+<div class="container-cards" ng-controller="getAllStudentCtrl">
+  <div class="row">
+    <div class="card col-sm-6 col-md-4 col-lg-3 mt-4" style="width: 20rem; margin-left: 30px; margin-top: 10px" ng-repeat="student in studentData">
+        <img class="card-img-top" src="../assets/img/avatar.png" alt="Worker's Avatar">
+        <div class="card-block">
+            <h2 class="card-title">{{ student.full_name }}</h2>
+            <p class="card-text">{{ student.username }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ student.student_profile.description }}</li>
+            <li class="list-group-item">{{ student.user_profile.contact }}<br>{{ student.email }}</li>
+            <li class="list-group-item"><strong>{{ student.user_profile.address }}</strong></li>
+        </ul>
+        <div class="card-block">
+            <a href="#!/jobdetail" class="card-link">Detail</a>
+            <a href="#" class="card-link">Report</a>
+        </div>
+    </div>
+    <h1> {{ errorMessage }} </h1>
+    <hr><br>
+    <h3> {{ status }} </h3>
+    <h3> {{ statusText }} </h3>
+  </div>
+</div>

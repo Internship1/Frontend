@@ -1,0 +1,87 @@
+<div class="add-more-job">
+  <br>
+  <h1>Edit Profile</h1>
+  <hr>
+  <div class="container">
+      <img class="avatar center" src="assets/img/avatar.png">
+      <div ng-controller="getMyProfileServiceCtrl" class="name-placement">
+        <h2>{{ fullName }}</h2>
+        <p><strong>{{ username }}</strong></p>
+      </div>
+    <form>
+      <div ng-controller="getMyProfileServiceCtrl">
+        <legend><h1>Account Information</h1></legend>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input class="form-control" id="fullname" placeholder=" {{ fullName }} " name="fullname">
+          </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" id="username" placeholder=" {{ username }} " name="username">
+          </div>
+          <div class="form-group">
+            <label>Email :</label>
+            <input class="form-control" id="contact" placeholder=" {{ email }} " name="email">
+          </div>
+          <div class="form-group">
+            <label>Password :</label>
+            <input type="password" class="form-control" id="password" placeholder="*******" name="password">
+          </div>
+      </div>
+      <br>
+      <br>
+      <div ng-controller="editStudentProfileServiceCtrl">
+        <legend><h1>Personal Information</h1></legend>
+        <label>Self Description</label>
+          <textarea class="form-control" ng-model="self_description" rows="4" placeholder="Self Description .."></textarea>
+          <div class="form-group">
+            <label>Contact :</label>
+            <input class="form-control" ng-model="contact" placeholder="contact">
+          </div>
+        <div class="form-group">
+          <label>Address :</label>
+          <textarea class="form-control" ng-model="address" rows="4" placeholder="address"></textarea>
+        </div>
+        <!--<div class="form-group">
+          <label>Jobs :</label>
+          <br>
+          <input type="checkbox" name="jobs[]" value="Waitress">Waitress
+          <br>
+          <input type="checkbox" name="jobs[]" value="Shop Keeper">Shopkeeper
+          <br>
+          <input type="checkbox" name="jobs[]" value="Model / Endorsement">Model / Endorsement
+          <br>
+          <input type="checkbox" name="jobs[]" value="Promotor">Promotor
+          <br>
+          <input type="checkbox" name="jobs[]" value="Blog Writer">Blog Writer
+          <br>
+          <input type="checkbox" name="jobs[]" value="Baby Sitter">Baby Sitter
+          <br>
+          <input type="checkbox" name="jobs[]" value="Graphic Designer">Graphic Designer
+          <br>
+          <input type="checkbox" name="jobs[]" value="Private Teacher">Private Teacher
+          <br>
+          <input type="checkbox" name="jobs[]" value="Copy Writer">Copy Writer
+          <br>
+        </div>-->
+        <label>Upload Your Profile Picture</label>
+        <form>
+          <input type="file" name="pic" accept="image/*">
+        </form>
+        <br>
+        <label>Upload Your Curriculum Vitae</label>
+        <form>
+          <input type="file" name="doc" accept=".doc">
+        </form>
+        <br>
+          <div class="control-group">
+            <div class="controls">
+              <input type="button" value="Send" ng-click="editProfile(self_description, contact, address)" /> <br/>
+              <p> {{ regMsg }} </p>
+              <p> {{ regMsgStatus }} </p>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
