@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # `angular-seed` — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS][angularjs] web app. You can use it
@@ -293,3 +294,7 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 [selenium]: http://docs.seleniumhq.org/
 [travis]: https://travis-ci.org/
 [travis-docs]: https://docs.travis-ci.com/user/getting-started
+=======
+# Frontend
+Frontend aplikasi
+>>>>>>> 8877f3a7a90819d9bbaaf421f24f557eb24be27e
