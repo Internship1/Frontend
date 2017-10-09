@@ -15,7 +15,7 @@ angular.module('myApp.addCompanyService', [])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var companyUrl = 'http://192.168.0.9:8080/api/companies/';
+		var companyUrl = 'http://192.168.0.8:8080/api/companies/';
 		var perintah= "/update";
 
 

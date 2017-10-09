@@ -12,13 +12,13 @@
     </div>
     </section>
     <section id="content">
-    <div class="container">
+    <div class="container" ng-controller="getMyProfileStudentCtrl">
             <div class="row">
           <!-- Horizontal Form -->
           <div class="col-md-1"></div>
           <div class="col-md-9">
           <div class="box box-info">
-            <div class="box-header with-border" ng-init="getMyProfileServiceCtrl" ng-controller="editStudentProfileServiceCtrl">
+            <div class="box-header with-border" >
               <h3 class="box-title" align="center">EDIT PROFILE as student</h3>
               <img class="avatar center" src="assets/img/avatar.png" alt=""  />
               <br>
@@ -26,12 +26,12 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" ng-controller="editStudentProfileServiceCtrl">
-              <div class="box-body" >
+              <div class="box-body">
                 <div class="form-group">
                   <label for="full_name"  class="col-sm-2 control-label">Full Name</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="fullname" ng-model="full_name" placeholder="">
+                    <input type="text" class="form-control" name="fullname" ng-model="student.full_name" placeholder="">
                   </div>
                 </div>
                 
@@ -39,30 +39,31 @@
                   <label for="email" class="col-sm-2 control-label">Email</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" ng-model="email" placeholder="Email">
+                    <input type="email" class="form-control" name="email" ng-model="student.email" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="gender" class="col-sm-2 control-label">Gender</label>
                   <div class="col-sm-10">
-                    <input type="radio" ng-model="gender" value="Male" required>  Male <br/>
-                    <input type="radio" ng-model="gender" value="Female" required> Female <br/>
+                    <input type="radio" ng-model="student.gender" value="Male" required>  Male <br/>
+                    <input type="radio" ng-model="student.gender" value="Female" required> Female <br/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="username" class="col-sm-2 control-label">Username</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="username" ng-model="username" placeholder="">
+                    <input type="text" class="form-control" name="username" ng-model="student.username" placeholder="">
                   </div>
                 </div>
+                <!--
                 <div class="form-group">
                   <label for="pwd" class="col-sm-2 control-label">Password</label>
 
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" name="password" ng-model="password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" ng-model="student.password" placeholder="">
                   </div>
-                </div>
+                </div>-->
                 
               </div>
               <br>
@@ -72,19 +73,13 @@
               
               <div class="box-body" >
               <h4>Informations Details</h4>
-                <!--<div class="form-group">
-                  <label for="description"  class="col-sm-2 control-label">Descriptions</label>
-
-                  <div class="col-sm-10">
-                  <textarea class="form-control" name="description" ng-model="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
-                  </div>
-                </div>-->
+                
                 
                 <div class="form-group">
                   <label for="contact" class="col-sm-2 control-label">Contact</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="contact" ng-model="contact" placeholder="Email">
+                    <input type="text" class="form-control" name="contact" ng-model="student.user_profile.contact" placeholder="Email">
                   </div>
                 </div>
                 
@@ -92,10 +87,17 @@
                   <label for="address" class="col-sm-2 control-label">Address</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="address" ng-model="address" placeholder="">
+                    <input type="text" class="form-control" name="address" ng-model="student.user_profile.address" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="description"  class="col-sm-2 control-label">Descriptions</label>
+
+                  <div class="col-sm-10">
+                  <textarea class="form-control" name="description" ng-model="student.user_profile.description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
+                  </div>
+                </div>
+                <!--<div class="form-group">
                   <label for="pwd" class="col-sm-2 control-label">Qualifies</label>
 
                   <div class="col-sm-10">
@@ -103,10 +105,10 @@
                   </div>
                 </div>
                 
-              </div>
+              </div>-->
               <!-- /.box-body -->
               <div class="text-right">
-               <button type="button" class="btn btn-theme" value="Send" ng-click="editProfile(full_name, email, gender, username, password, contact, address)">Edit</button>
+               <button type="button" class="btn btn-theme" value="Send" ng-click="editUser(student.full_name,student.email, student.gender, student.username); editStudent(student.user_profile.contact, student.user_profile.address, student.user_profile.description)">Edit</button>
                 
                 <button type="submit" class="btn btn-theme">Cancel</button>
               </div>

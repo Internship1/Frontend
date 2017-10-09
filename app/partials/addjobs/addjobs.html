@@ -41,7 +41,40 @@
                     <input type="text" class="form-control" name="type_name" ng-model="type_name" placeholder="">
                   </div>
                 </div>-->
+                <!-- <div ng-controller="checkboxCtrl"> -->
+                <div class="form-group" >
+                  <label class="col-sm-2 control-label">Job Type</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="jobtype_id" id="" ng-model="jobtype_id" ng-change="pilihType(jobtype_id)" ng-options="types.id as types.type_name for types in jobtypes">
+                      <option value="">Choose job types...</option>
+                    </select>
+                  </div>
+                </div>
+<!-- 
+               <div class="form-group" >
+                 <label class="col-sm-2 control-label">Qualifies</label>
+                 <div class="col-sm-10">
+                <div ng-dropdown-multiselect="" options="example14data" selected-model="qualify_id" checkboxes="true" extra-settings="example14settings"></div> <pre>Selected Model: {{qualify_id}} | json</pre>
+                <input type="hidden" ng-model="qualify_id">
+                </div>
                 
+                </div>
+                </div> -->
+                <div class="form-group" >
+                  <label for="qualify_id" class="col-sm-2 control-label">Qualifies</label>
+
+                  <div class="col-sm-10" ng-repeat="qualify in qualifies">
+                     <input type="checkbox" checklist-model="qualify_id" checklist-value="qualify.id"> {{qualify.name}}
+                  </div>
+
+                </div>
+                <!--  <div>
+                 <h3>Selected User Roles </h3>
+                <pre class="ng-binding">{{qualify_id|json}}</pre>
+            </div> -->
+
+               
+
                 <div class="form-group">
                   <label for="job_position" class="col-sm-2 control-label">Location</label>
 
@@ -71,15 +104,48 @@
                     <input type="radio" ng-model="job_status" value="0" required>0<br/>
                   </div>
                 </div>-->
+                 
                  <div class="form-group">
-                  <label class="col-sm-2 control-label">Job Type</label>
-                  <div class="col-sm-10">
-                    <select class="form-control" name="jobtype_id" id="" ng-model="jobtype_id" ng-options="types.id as types.type_name for types in jobtypes">
-                      <option value="">Choose job types...</option>
+                  <label class="col-sm-2 control-label">Salary</label>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="min_salary" id="" ng-model="min_salary">
+                      <option value="">Choose min salary...</option>
+                      <option value="500000">Rp.500.000,00</option>
+                      <option value="1000000">Rp.1000.000,00</option>
+                      <option value="2000000">Rp.2000.000,00</option>
+                      <option value="3000000">Rp.3000.000,00</option>
+                      <option value="4000000">Rp.4000.000,00</option>
+                      <option value="5000000">Rp.5000.000,00</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-1" align="center"><i class="fa fa-window-minimize"></i></div>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="max_salary" id="" ng-model="max_salary">
+                      <option value="">Choose max salary...</option>
+                      <option value="1000000">Rp.1000.000,00</option>
+                      <option value="2000000">Rp.2000.000,00</option>
+                      <option value="3000000">Rp.3000.000,00</option>
+                      <option value="4000000">Rp.4000.000,00</option>
+                      <option value="5000000">Rp.5000.000,00</option>
+                      <option value="10000000">Rp.10.000.000,00</option>
                     </select>
                   </div>
                 </div>
-                 
+               
+                 <div class="form-group">
+                  <label for="job_open" class="col-sm-2 control-label">Job Open</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_open" ng-model="job_open" placeholder="Job Open">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="job_close" class="col-sm-2 control-label">Job Close</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_close" ng-model="job_close" placeholder="Job Close">
+                  </div>
+                </div> 
                 
             
                 
@@ -89,7 +155,7 @@
               <!-- /.box-body -->
               <!-- /.box-body -->
               <div class="text-right">
-               <button type="button" class="btn btn-theme" value="Send" ng-click="postMoreJobs(job_position,job_facilities, job_description, jobtype_id)">Add Job</button>
+               <button type="button" class="btn btn-theme" value="Send" ng-click="postMoreJobs(jobtype_id, qualify_id, job_position, job_facilities, job_description, min_salary, max_salary, job_open, job_close)">Add Job</button>
                 
                 <button type="submit" class="btn btn-theme">Cancel</button>
               </div>

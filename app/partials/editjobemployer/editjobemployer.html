@@ -1,0 +1,130 @@
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <ul class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                   <li><a href="#!/studentprofile">Company Management</a><i class="icon-angle-right"></i></li>
+                  <li class="active">Edit Job</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section id="content">
+    <div class="container" ng-controller="editJobEmpCtrl">
+            <div class="row">
+          <!-- Horizontal Form -->
+          <div class="col-md-1"></div>
+          <div class="col-md-9">
+          <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title" align="center">EDIT JOB</h3>
+              <img class="avatar center" src="assets/img/avatar.png" alt=""  />
+              <br>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" ng-controller="editJobEmpCtrl">
+              <div class="box-body">
+                <div class="form-group" >
+                  <label class="col-sm-2 control-label">Job Type</label>
+                  <div class="col-sm-10" >
+                     <select class="form-control" name="jobtype_id" id="" ng-model="jobs.jobtype_id" ng-change="pilihType(jobtype_id)" ng-options="types.id as types.type_name for types in jobtypes">
+                      <option value="">Choose job types...</option>
+                    </select>
+                  </div>
+                </div>
+                 <div class="form-group" >
+                  <label for="qualify_id" class="col-sm-2 control-label">Qualifies</label>
+
+                  <div class="col-sm-10" ng-repeat="qualify in qualifies">
+                     <input type="checkbox" checklist-model="jobs.qualify_id" checklist-value="qualify.id"> {{qualify.name}}
+                  </div>
+
+                </div>
+                
+                <div class="form-group">
+                  <label for="job_position" class="col-sm-2 control-label">Job Location</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_position" ng-model="jobs.job_position" placeholder="">
+                  </div>
+                </div>
+               
+                <div class="form-group">
+                  <label for="job_facilities" class="col-sm-2 control-label">Job Facilities</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_facilities" ng-model="jobs.job_facilities" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="job_description"  class="col-sm-2 control-label">Job Descriptions</label>
+
+                  <div class="col-sm-10">
+                  <textarea class="form-control" name="job_description" ng-model="jobs.job_description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
+                  </div>
+                </div>
+                <div class="form-group" ng-controller="editJobEmpCtrl">
+                  <label class="col-sm-2 control-label">Salary</label>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="min_salary" id="" ng-model="jobs.min_salary">
+                      <option value="">Choose min salary...</option>
+                      <option value="500000">Rp.500.000,00</option>
+                      <option value="1000000">Rp.1000.000,00</option>
+                      <option value="2000000">Rp.2000.000,00</option>
+                      <option value="3000000">Rp.3000.000,00</option>
+                      <option value="4000000">Rp.4000.000,00</option>
+                      <option value="5000000">Rp.5000.000,00</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-1" align="center"><i class="fa fa-window-minimize"></i></div>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="max_salary" id="" ng-model="jobs.max_salary">
+                      <option value="">Choose max salary...</option>
+                      <option value="1000000">Rp.1000.000,00</option>
+                      <option value="2000000">Rp.2000.000,00</option>
+                      <option value="3000000">Rp.3000.000,00</option>
+                      <option value="4000000">Rp.4000.000,00</option>
+                      <option value="5000000">Rp.5000.000,00</option>
+                      <option value="10000000">Rp.10.000.000,00</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="job_open" class="col-sm-2 control-label">Job Open</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_open" ng-model="jobs.job_open" placeholder="Job Open">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="job_close" class="col-sm-2 control-label">Job Close</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="job_close" ng-model="jobs.job_close" placeholder="Job Close">
+                  </div>
+                </div> 
+                
+              </div>
+             
+              
+             
+              <!-- /.box-body -->
+              <div class="text-right">
+               <button type="button" class="btn btn-theme" value="Send" ng-click="editJob(jobs.jobtype_id, jobs.qualify_id, jobs.job_position, jobs.job_facilities, jobs.job_description, jobs.min_salary, jobs.max_salary,jobs.job_open,jobs.job_close)">Edit</button>
+                
+                <button type="submit" class="btn btn-theme">Cancel</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+            <h2> {{ loginMsg }} <strong> {{loginMsgRedirect}} </strong> </h2>
+            <p> {{ regMsg }} </p>
+          </div>
+          </div>
+          <div class="col-md-3"></div>
+            </div>
+            
+        </div>
+    </section>

@@ -14,7 +14,7 @@ angular.module('myApp.loginAuthService', [])
 			
 		};
 		//call service
-		$http.post('http://192.168.0.9:8080/api/Login', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.8:8080/api/Login', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Post Success !";
 				$scope.regMsgStatus = response.status;

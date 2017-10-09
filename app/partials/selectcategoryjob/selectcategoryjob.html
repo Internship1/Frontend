@@ -12,7 +12,7 @@
   </div>
   </section>
   <section id="content" ng-controller="getAllJobsCtrl">
-  <div class="container" ng-init="getType(jobtype_id)">
+  <div class="container" ng-init="getType()">
     <div class="row">
       <div class="col-lg-8">
         <div class="big-cta">
@@ -21,20 +21,20 @@
           </div>
         </div>
         <div class="row" >
-          <div class="col-lg-4" ng-repeat="js in selectedPerson | filter:q">
+          <div class="col-lg-4" ng-repeat="select in js | filter:q">
           <div class="row">
             <div class="box">
               <div class="box-gray ">
-                <h5 class="aligncenter">{{js.job_type.type_name}}</h5>
+                <h5 class="aligncenter">{{select.job_type.type_name}}</h5>
                 <div class="icon">
                 <img src="assets/img/boarding_labs.png" class="aligncenter">
                 <br>
                 <br>
                 </div>
-                <a href=""  ><i class="fa fa-suitcase"></i> {{ js.employer.company.company_name}}</a><br>
-                <i class="fa fa-map-marker"></i>   {{js.job_position}}<br>
-                <i class="fa fa-phone-square"></i> {{js.employer.company.company_contact}}<br>
-                <i class="fa fa-calendar"></i> {{js.created_at}}<br>
+                <a href="#!/selectcompany/{{select.id}}" ><i class="fa fa-suitcase"></i> {{ select.employer.company.company_name}}</a><br>
+                <i class="fa fa-map-marker"></i>   {{select.job_position}}<br>
+                <i class="fa fa-phone-square"></i> {{select.employer.company.company_contact}}<br>
+                <i class="fa fa-calendar"></i> {{select.created_at}}<br>
               </div>
               <div class="box-bottom">
                 <a ng-click="postApply(job.id)">Apply</a>
@@ -58,9 +58,9 @@
           </form>
         </div>
         <div class="widget" ng-controller="getAllJobsCtrl">
-          <h5 class="widgetheading">Jobs Categories</h5>
+          <h5 class="widgetheading">{{jb.type_name}}</h5>
           <ul class="cat">
-            <li  ng-repeat="j in jb" ng-model="q"><i class="icon-angle-right"></i><a ng-click="getType(j.jobtype_id)">{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
+           <li  ng-repeat="j in jb"><i class="icon-angle-right"></i><a href="#!/categoryjob/{{j.jobtype_id}}"  >{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
              <!--<li ><i class="icon-angle-right"></i><a href="#">Shopkeeper</a><span> (11)</span></li>
            <li><i class="icon-angle-right"></i><a href="#">Model/Endorsement</a><span> (9)</span></li>
             <li><i class="icon-angle-right"></i><a href="#">promotor/sales</a><span> (12)</span></li>

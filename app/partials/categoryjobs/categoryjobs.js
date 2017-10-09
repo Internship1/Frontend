@@ -9,6 +9,9 @@ angular.module('myApp.categoryjobs', ['ngRoute'])
   }).when('/categoryjob/:jobtype_id', {
     templateUrl: 'partials/selectcategoryjob/selectcategoryjob.html',
     controller: 'getAllJobsCtrl'
+  }).when('/categoryjob/company/:id', {
+    templateUrl: 'partials/selectcompany/selectcompany.html',
+    controller: 'selectcompanyCtrl'
   });
 }])
 

@@ -10,7 +10,7 @@ angular.module('myApp.getMyJobService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var userProfileUrl = 'http://192.168.0.9:8080/api/employerJobs/';
+	var userProfileUrl = 'http://192.168.0.8:8080/api/employerJobs/';
 	//agar user tetap mendapatkan token di header
 //$http.defaults.headers.common.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem("KEY_TOKEN"));
 	$http({

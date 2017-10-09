@@ -9,8 +9,22 @@ angular.module('myApp.editCompanyProfileService', [])
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var userEditCompanyProfileUrl = 'http://192.168.0.9:8080/api/companies/';
+	var userEditCompanyProfileUrl = 'http://192.168.0.8:8080/api/companies/';
 	var perintah= "/update"
+
+	$http({
+		method: "GET",
+		url: userEditCompanyProfileUrl + userEndPoint
+	}).then(function successCallBack(response) {
+		$scope.compDetail= response.data.employerJobs.company;
+		//console.log($scope.compDetail);
+		
+	}, function errorCallBack(response) {
+		$scope.errorMessage = 'Ops, Something went wrong when displaying data!';
+		$scope.status = response.status;
+		$scope.statusText = response.statusText;
+	});
+
 	$scope.editComapnyProfile = function(company_name, company_contact, company_address, company_email, company_website,company_description) {
 		var data = {
 			company_name:company_name,

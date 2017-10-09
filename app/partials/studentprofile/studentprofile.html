@@ -16,13 +16,13 @@
   <div class="container">
     <div class="row">
         
-        <div class="sidebar-wrapper" ng-controller="getMyProfileServiceCtrl"> 
+        <div class="sidebar-wrapper" ng-controller="getMyProfileStudentCtrl"> 
         <!--ng-controller="getMyProfileServiceCtrl"-->
         
             <div class="profile-container">
-                <img class="profile avatar" src="assets/img/avatar.png" alt="" />
-                <h1 class="name"> {{fullName}} </h1>
-                <h3 class="tagline"> {{username}} </h3><br>
+                <img class="profile avatar" ng-src="{{gambar}}" alt="" /><a href="#!/editprofilestud"><i class="fa fa-pencil"></i> Change Picture</a>
+                <h1 class="name"> {{student.full_name}} </h1>
+                <h3 class="tagline"> {{student.username}} </h3><br>
 <!--                 <fieldset class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                     <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
@@ -34,22 +34,31 @@
                     <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
                     <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
                     <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                </fieldset> -->
-                <a class="nav-link" href="#!/editprofilestud"><img class="icon-default" src="assets/icons/settings-icon.png"></a><br><br>
+                </fieldset>
+                <a class="nav-link" href="#!/editprofilestud"><img class="icon-default" src="assets/icons/settings-icon.png"> --></a><br><br>
                 <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
                 <button type="follow">Follow</button><br>
             </div><!--//profile-container-->
-             
+              <div class="pull-right">
+                    <button class="btn-success"><a href="#!/editprofilestud"><i class="fa fa-pencil"></i></a></button>
+                </div>
             <div class="contact-container container-block">
-                <p> I'am a {{ gender }} </p>
-                <p><a href="mailto: {{ email }}"> {{ email }} </a></p>
+               
+                <p> I'am a {{ student.gender }} </p>
+               
+                <br>
                 <p><strong> Contact Me ! </strong></p>
-                <p> {{ contact }} </p>
-                <p> {{ address }} </p>
+                 <p><i class="fa fa-envelope-o"></i><a href="mailto: {{ email }}"> {{ student.email }} </a></p>
+                <p> <i class="fa fa-phone-square"></i> {{ student.user_profile.contact }} </p>
+                <p> <i class="fa fa-home"></i> {{ student.user_profile.address }} </p>
+                <br>
                 <p><strong> About Me </strong></p>
-                <p> {{ description }} </p>
-                <p><strong> Member Since : </strong> {{ membership }} </p>
+                <p> {{ student.user_profile.description }} </p>
+                <br>
+                <p><strong> Member Since : </strong> {{ student.created_at }} </p>
+            
             </div>
+
 <!--             <div class="education-container container-block">
                 <h2 class="container-block-title">Education</h2>
                 <div class="item">
@@ -85,6 +94,7 @@
               <button class="tablinks" onclick="openProfile(event, 'Experiences')">Experiences</button>
               <button class="tablinks" onclick="openProfile(event, 'Projects')">Projects</button>
               <button class="tablinks" onclick="openProfile(event, 'Skills')">Skills</button>
+              <button class="tablinks" onclick="openProfile(event, 'mail')">Mail</button>
             </div>
             
             <div id="Timeline" class="tabcontent">
@@ -220,7 +230,173 @@
                     
                 </div>  
             </section><!--//skills-section-->
-            </div>           
+            </div>
+
+            <div id="mail">
+            <div class="tab" >
+              <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
+              <button class="tablinks" onclick="openProfile(event, 'inbox')" id="defaultOpen">Inbox</button>
+              <button class="tablinks" onclick="openProfile(event, 'outbox')">Outbox</button>
+               <button class="tablinks" onclick="openProfile(event, 'write')">Write Mail</button>
+             
+            </div>
+            <div id="inbox" class="tabcontent" >
+            <section class="section projects-section">
+                <div  class="mail-inbox">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Inbox</h2>
+                  <table class="table table-condensed table-hover">
+                  <thead>
+                    <tr>
+                      <th class="span1"><input type="checkbox"></th>
+                      <th class="span1"><h5>Sender</h5></th>
+                     
+                      <th class="span8"><h5>Message</h5></th>
+                      <th class="span1"><h5>Time Sent</h5></th>
+                       <th class="span1"></th>
+                    </tr>
+                  </thead>
+                  <tbody ng-controller="getMyMailCtrl">
+                    <tr ng-repeat="mail in inbox">
+                      <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
+                      <td>{{mail.sender.full_name}}</td>
+                      
+                      <td ng-init="limit = 15; moreShown = false"><strong>{{mail.title}} - </strong>{{mail.content| limitTo: limit}}{{mail.content.length > limit ? '...' : ''}}
+                        <a ng-show="mail.content.length > limit"
+                          href ng-click="limit=mail.content.length; moreShown = true">  More
+                        </a>
+                        <a ng-show="moreShown" href ng-click="limit=15; moreShown = false"> Less </a>
+                      </td>
+                      <td>{{mail.message_sent}}</td>
+                      <td><a href=""><i class="fa fa-mail-reply"></i></a> | <a href="" ng-click="deleteInbox(mail.id)"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+                    
+                   
+                   
+                  </tbody>
+                  </table>
+                </div>
+
+                
+               
+            </section><!--//section-->
+            </div>
+
+            <!--OUTBOX-->
+             <div id="outbox" class="tabcontent" >
+            <section class="section projects-section">
+                <div  class="mail-inbox">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Outbox</h2>
+                  <table class="table table-condensed table-hover">
+                  <thead>
+                    <tr>
+                      <th class="span1"><input type="checkbox"></th>
+                      <th class="span1"><h5>Receiver</h5></th>
+                     
+                      <th class="span8"><h5>Message</h5></th>
+                      <th class="span1"><h5>Time Sent</h5></th>
+                       <th class="span1"></th>
+                    </tr>
+                  </thead>
+                  <tbody ng-controller="getMyMailCtrl">
+                    <tr ng-repeat="out in outbox">
+                      <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
+                      <td>{{out.receiver.full_name}}</td>
+                      
+                      <td ng-init="limit = 15; moreShown = false"><strong>{{out.title}} - </strong>{{out.content| limitTo: limit}}{{out.content.length > limit ? '...' : ''}}
+                        <a ng-show="out.content.length > limit"
+                          href ng-click="limit=out.content.length; moreShown = true">  More
+                        </a>
+                        <a ng-show="moreShown" href ng-click="limit=15; moreShown = false"> Less </a>
+                      </td>
+                      <td>{{out.message_sent}}</td>
+                      <td> <a href="" ng-click="deleteOutbox(out.id)"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+                    
+                   
+                   
+                  </tbody>
+                  </table>
+                </div>
+
+                
+               
+            </section><!--//section-->
+            </div>
+
+
+            <div id="write" class="tabcontent" ng-controller="getAllUsersCtrl">
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Write Mail</h2>
+                <form class="form-horizontal" ng-controller="getMyMailCtrl">
+              <div class="box-body" >
+                <!--  <div class="form-group">
+                  <label for="receiver_id" class="col-sm-1 control-label">Receiver</label>
+
+                  <div class="col-sm-10"  >
+                    <input type="text" class="form-control"  ng-model="a" placeholder="Receiver">
+                  </div>
+                  <div >
+                  <button type="button" class="btn btn-theme" value="Send" ng-click="postMail(receiver_id,title,content)">Add</button>
+                  </div>
+                  <div class="col-sm-2">
+                  </div>
+                  <div ng-controller="getAllUsersCtrl">
+                  <div class="col-sm-10" ng-repeat="receiver in users | filter:a" >
+                     <input type="hidden" class="form-control" name="receiver_id" ng-model="receiver.full_name" placeholder="Receiver"> 
+                    <label for="receiver_id" >{{receiver.full_name}}</label>
+                  </div>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label class="col-sm-1 control-label">Receiver</label>
+                  <div class="col-sm-11">
+                    <select class="form-control" name="receiver_id" id="" ng-model="receiver_id" ng-options="types.id as types.full_name for types in users">
+                      <option value="">Choose receiver...</option>
+                    </select>
+                  </div>
+                </div>
+               <!--  <div class="form-group">
+                  <label class="col-sm-1 control-label">Receiver</label>
+                  <div class="col-sm-11" ng-controller="getAllUsersCtrl">
+                    <select class="form-control" name="receiver_id" id="" ng-model="receiver_id" ng-options="penerima.id as penerima.full_name for penerima in users">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="title" class="col-sm-1 control-label">Title</label>
+
+                  <div class="col-sm-11">
+                    <input type="text" class="form-control" name="title" ng-model="title" placeholder="Title">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="content"  class="col-sm-1 control-label">Content</label>
+
+                  <div class="col-sm-11">
+                  <textarea class="form-control" name="content" ng-model="content" rows="5" placeholder="Content Message"></textarea>
+                  </div>
+
+               
+                 </div>
+              <br>
+             
+              <!-- /.box-body -->
+              <!-- /.box-body -->
+              <div class="text-right">
+               <button type="button" class="btn btn-theme" value="Send" ng-click="postMail(receiver_id,title,content)">Send Mail</button>
+                
+                <button type="submit" class="btn btn-theme">Cancel</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+                
+               
+            </section><!--//section-->
+            </div>
+            </div>
+                         
             
         </div><!--//main-body-->
 

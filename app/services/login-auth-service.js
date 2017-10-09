@@ -14,11 +14,12 @@ angular.module('myApp.loginAuthService', [])
 			
 		};
 		//call service
-		$http.post('http://192.168.0.9:8080/api/Login', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.8:8080/api/Login', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Post Success !";
 				$scope.regMsgStatus = response.status;
 				if ($scope.regMsgStatus = 200) {
+
 						$scope.loginMsg = "Login Success !";
 						$scope.loginMsgRedirect = "Please wait while you're redirected ..";
 						$scope.statusToken = response.status;
@@ -49,8 +50,9 @@ angular.module('myApp.loginAuthService', [])
 
 			}, // else if fail
 			function (response) {
+			alert("Email or password wrong, please input your correct email and password!");
 			$scope.regMsg = "Login Failed !";
-			$location.path('#!/loginpage');
+			window.location.href = "#!/loginemp";
 		});
 
 	}

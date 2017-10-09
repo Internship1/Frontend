@@ -1,0 +1,159 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Manage Company</li>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section>
+  <div id="content">
+  <div class="container" ng-controller="selectcompanyCtrl">
+    <div class="row" ng-init="getCompany()">
+        
+        <div class="sidebar-wrapper"> 
+        <!--ng-controller="getMyProfileServiceCtrl"-->
+        
+            <div class="profile-container"  >
+                <img class="profile avatar" src="assets/img/avatar.png" alt="" />
+                <h1 class="name" > {{comp.company.company_name}} </h1>
+                <h3 class="tagline" > {{comp.username}} </h3><br>
+<!--                 <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                </fieldset> -->
+                <a class="nav-link" href="#!/editprofileemp"><img class="icon-default" src="assets/icons/settings-icon.png"></a><br><br>
+                <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
+                <button type="follow">Follow</button><br>
+            </div><!--//profile-container-->
+             
+            <div class="contact-container container-block">
+                <p> {{comp.company.company_website}} </p>
+                <p><a href="mailto: {{ email }}"> {{ comp.company.company_email }} </a></p>
+                <p><i class="fa fa-phone-square"></i> {{ comp.company.company_contact }} </p>
+                <p><i class="fa fa-map-marker"></i> {{ comp.company.company_address }} </p>
+                
+                <p><strong> Member Since : </strong> {{ comp.created_at }} </p>
+            </div>
+<!--             <div class="education-container container-block">
+                <h2 class="container-block-title">Education</h2>
+                <div class="item">
+                    <h4 class="degree">MSc in Computer Science</h4>
+                    <h5 class="meta">University of London</h5>
+                    <div class="time">2011 - 2012</div>
+                </div>
+                <div class="item">
+                    <h4 class="degree">BSc in Applied Mathematics</h4>
+                    <h5 class="meta">Bristol University</h5>
+                    <div class="time">2007 - 2011</div>
+                </div>
+            </div> -->
+            
+        </div><!--//sidebar-wrapper-->
+        
+
+        
+        <div class="main-wrapper">
+            <div class="follow"> 
+                <ul>
+                <li>Followers</li>
+                <li>Following</li>                
+                </ul>
+            </div>
+        <!--<div class="row" >
+            <a href="#!/addjobs" class="btn btn-large btn-success pull-right">Add Jobs</a>
+        </div>-->
+
+            <div class="tab">
+              <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
+              <button class="tablinks" onclick="openProfile(event, 'jobs')" id="defaultOpen">Jobs Available</button>
+              <button class="tablinks" onclick="openProfile(event, 'resume')">Applicant</button>
+              <!--<button class="tablinks" onclick="openProfile(event, 'Skills')">Skills</button>-->
+            </div>
+            
+            <!--<div id="Timeline" class="tabcontent">
+              <h3>nana</h3>
+              <p>Ini adalah Timeline</p>
+            </div>-->
+
+            <div id="jobs" class="tabcontent"  >
+              <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Jobs Available</h2>
+                
+                <div class="item" >
+                <div  ng-repeat="tampil in jo">
+                    <div class="meta" >
+                        <div class="upper-row" >
+
+                            <h3 class="job-title"><b>{{tampil.job_type.type_name}}</b></h3>
+
+                            <div class="time">{{tampil.created_at}}</div>
+                        </div>
+                        <div class="company">{{comp.company.company_name}}</div>
+                    </div><!--//meta-->
+                    <div class="details" >
+                        <p>Fasilitas : {{tampil.job_facilities}}</p>
+                        <p>Deskripsi :{{tampil.job_description}}</p>
+                       
+                        <!--<a href="#" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right"><i class="fa fa-times"></i><i class="icon-angle-right"></i></a>
+                    <a href="#" class="btn btn-large btn-success pull-right"><i class="fa fa-edit"></i><i class="icon-angle-right"></i></a>-->
+                    </div>
+                     <div class="row" ng-controller="getAllJobsCtrl">
+                        <a href="" ng-click="postApply(tampil.id)" class="btn btn-large btn-success  col-md-3 pull-right" >Apply</a>
+                    </div>  
+                   
+                    
+                    </div>
+                    </div><!--//details-->
+
+
+                     
+                    <br>
+               
+                
+                
+            </section><!--//section-->
+            </div>
+
+            <div id="resume" class="tabcontent" >
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Applicant</h2>
+                <div class="intro">
+                    <p>Below is a list that has applied jobs to your company. Check it below!</p>
+                </div><!--//intro-->
+                <div >
+                <div class="item" ng-repeat="bl in stude">
+                    <span class="project-title"><a href="#hook">{{bl.username}}</a></span> - 
+                    <span class="project-tagline" >{{bl.full_name}}</span>
+                    
+                    
+                </div><!--//item-->
+                </div>
+                <div class="item">
+                    <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/" target="_blank">DevStudio</a></span> - 
+                    <span class="project-tagline">A responsive website template designed to help web developers/designers market their services. </span>
+                </div><!--//item-->
+            </section><!--//section-->
+            </div>
+               
+            
+        </div><!--//main-body-->
+
+    </div>
+  </div>
+  </div>
+      
+  </section>

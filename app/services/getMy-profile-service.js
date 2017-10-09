@@ -10,10 +10,10 @@ angular.module('myApp.getMyProfileService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var userProfileUrl = 'http://192.168.0.9:8080/api/users/';
-	var userCompanyUrl = 'http://192.168.0.9:8080/api/companies/';
-	var userJobsUrl = 'http://192.168.0.9:8080/api/employerJobs/';
-	var applyUrl = 'http://192.168.0.9:8080/api/applies/employer/';
+	var userProfileUrl = 'http://192.168.0.8:8080/api/users/';
+	var userCompanyUrl = 'http://192.168.0.8:8080/api/companies/';
+	var userJobsUrl = 'http://192.168.0.8:8080/api/employerJobs/';
+	var applyUrl = 'http://192.168.0.8:8080/api/applies/employer/';
 	//agar user tetap mendapatkan token di header
 //$http.defaults.headers.common.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem("KEY_TOKEN"));
 	$http({
@@ -90,7 +90,7 @@ angular.module('myApp.getMyProfileService', [])
            
           
         }
-        console.log($scope.jobs);
+       
         //$scope.jobs=JSON.stringify(response.data.employerJobs.job);
         //var jobs=$scope.jobs;
 			//
@@ -158,7 +158,7 @@ angular.module('myApp.getMyProfileService', [])
 	$scope.deleteJob = function(id){
 		
 		
-		var urlDelete = 'http://192.168.0.9:8080/api/jobs/';
+		var urlDelete = 'http://192.168.0.8:8080/api/jobs/';
 		var hapus = "/delete";
 		$http.delete(urlDelete+id+hapus).then(function(response){
 			

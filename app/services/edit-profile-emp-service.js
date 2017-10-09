@@ -9,7 +9,7 @@ angular.module('myApp.editEmpProfileService', [])
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var userEditProfileUrl = 'http://192.168.0.9:8080/api/users/';
+	var userEditProfileUrl = 'http://192.168.0.8:8080/api/users/';
 	var perintah= "/update"
 	
 	$scope.editProfileEmp = function(full_name, email, gender, username, password) {

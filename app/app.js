@@ -20,7 +20,10 @@ var app = angular
     'myApp.addjobs',
     'myApp.addcompany',
     'myApp.selectcategoryjob',
-
+    'myApp.selectcompany',
+    'myApp.editjobemployer',
+    'myApp.editprofilecomp',
+    'myApp.faq',
     
     'myApp.version',
     /*Controllers Declared Here*/
@@ -33,6 +36,7 @@ var app = angular
     'myApp.postRegister',
     'myApp.submitExample',
     'myApp.postTest',
+    'myApp.angularjs-dropdown-multiselect',
     /*Service Declared Here*/
     'myApp.studRegisterService',
     'myApp.emplRegisterService',
@@ -51,6 +55,14 @@ var app = angular
     //'myApp.getMyJobService',
     'myApp.addCompanyService',
     //'myApp.sessionService'
+    'myApp.selectcompany',
+    'myApp.getMyProfileStudentService',
+    'myApp.editJobEmpService',
+    'myApp.getAllPostingService',
+    'myApp.getMyMailService',
+    'myApp.getAllUsersService',
+    'myApp.getAllFaqService',
+    // 'myApp.ngrollbar',
   ])
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');

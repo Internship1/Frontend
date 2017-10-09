@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="row" >
-          <div class="col-lg-4" ng-repeat="job in jobs | filter:q">
+          <div class="col-lg-4" ng-repeat="job in jobs | filter:q |orderBy:'-created_at'">
           <div class="row">
             <div class="box">
               <div class="box-gray ">
@@ -31,13 +31,15 @@
                 <br>
                 <br>
                 </div>
-                <a href=""  ><i class="fa fa-suitcase"></i> {{ job.employer.company.company_name}}</a><br>
+                <a href="#!/categoryjob/company/{{job.employer_id}}"  ><i class="fa fa-suitcase"></i> {{ job.employer.company.company_name}}</a><br>
                 <i class="fa fa-map-marker"></i>   {{job.job_position}}<br>
                 <i class="fa fa-phone-square"></i> {{job.employer.company.company_contact}}<br>
-                <i class="fa fa-calendar"></i> {{job.created_at}}<br>
+                <i class="fa fa-money"></i> {{job.min_salary}} <i class="glyphicon glyphicon-minus"></i> {{job.max_salary}}<br>
+                <i class="fa fa-calendar"></i> {{job.job_open}} <i class="glyphicon glyphicon-minus"></i> {{job.job_close}}<br>
+                
               </div>
               <div class="box-bottom">
-                <a ng-click="postApply(job.id)">Apply</a>
+                <a href="" ng-click="postApply(job.id)">Apply</a>
               </div>
             </div>
           </div>
@@ -61,40 +63,21 @@
           <h5 class="widgetheading">Jobs Categories</h5>
           <ul class="cat">
             <li  ng-repeat="j in jb"><i class="icon-angle-right"></i><a href="#!/categoryjob/{{j.jobtype_id}}"  >{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
-             <!--ng-click="getType(j.jobtype_id)"<li ><i class="icon-angle-right"></i><a href="#">Shopkeeper</a><span> (11)</span></li>
-           <li><i class="icon-angle-right"></i><a href="#">Model/Endorsement</a><span> (9)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">promotor/sales</a><span> (12)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">Blog Writter</a><span> (18)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">Babysitter</a><span> (9)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">Graphic Designer</a><span> (12)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">Private Teacher</a><span> (18)</span></li>
-            <li><i class="icon-angle-right"></i><a href="#">Copy Writter</a><span> (18)</span></li>-->
           </ul>
         </div>
+
         <div class="widget">
-          <h5 class="widgetheading">Latest posts</h5>
+          <h5 class="widgetheading">Latest jobs</h5>
           <ul class="recent">
-            <li>
+            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 5">
             <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-            <h6><a href="#">CV. Boarding Labs Teknologi Indonesia</a></h6>
-            <p>
-               Mazim alienum appellantur eu cu ullum officiis pro pri
-            </p>
+            <h6><a href="#">{{show.job_type.type_name}}</a></h6>
+            
+               {{ show.employer.company.company_name}}<br>
+               <p>{{show.created_at}}</p>
+            
             </li>
-            <li>
-            <a href="#"><img src="assets/img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
-            <h6><a href="#">PT. Pos Logistik</a></h6>
-            <p>
-               Mazim alienum appellantur eu cu ullum officiis pro pri
-            </p>
-            </li>
-            <li>
-            <a href="#"><img src="assets/img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
-            <h6><a href="#">PT. Aerofood Indonesia</a></h6>
-            <p>
-               Mazim alienum appellantur eu cu ullum officiis pro pri
-            </p>
-            </li>
+           
           </ul>
         </div>
         <div class="widget">

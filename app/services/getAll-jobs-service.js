@@ -7,7 +7,7 @@ angular.module('myApp.getAllJobsService', [])
 	
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.9:8080/api/jobs/all'
+		url: 'http://192.168.0.8:8080/api/jobs/all'
 	}).then(function successCallBack(response) {
 		$scope.jobs = response.data.jobs;
 		//$scope.hitung = response.data.jobs.length;
@@ -44,7 +44,7 @@ angular.module('myApp.getAllJobsService', [])
         	
         	}
 
-        	console.log($scope.types);
+        	//console.log($scope.types);
 
         }
         
@@ -59,7 +59,7 @@ angular.module('myApp.getAllJobsService', [])
 
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.9:8080/api/countjob'
+		url: 'http://192.168.0.8:8080/api/countjob'
 	}).then(function successCallBack(response) {
 		$scope.jb = response.data.jobs;
 		
@@ -73,7 +73,7 @@ angular.module('myApp.getAllJobsService', [])
 	
 	$scope.getType = function (jobtype_id) {
 		var jobtype_id = $routeParams.jobtype_id;
-		var tipeUrl = 'http://192.168.0.9:8080/api/jobs/type/';
+		var tipeUrl = 'http://192.168.0.8:8080/api/jobs/type/';
 		//call service
 		
 	$http({
@@ -92,13 +92,14 @@ angular.module('myApp.getAllJobsService', [])
 	
 
 	};
+
 	
 
 		$scope.postApply = function (id) {
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var applyUrl = 'http://192.168.1.14:8080/api/applies/store/';
+		var applyUrl = 'http://192.168.0.8:8080/api/applies/store/';
 		//call service
 		$http.post(applyUrl + id, JSON.stringify(id)).then(function(response) {
 			if (response.data)

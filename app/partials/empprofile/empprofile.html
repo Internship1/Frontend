@@ -20,7 +20,9 @@
         <!--ng-controller="getMyProfileServiceCtrl"-->
         
             <div class="profile-container" ng-controller="getMyProfileServiceCtrl" >
-                <img class="profile avatar" src="assets/img/avatar.png" alt="" />
+                <img class="profile avatar" src="assets/img/profile.png" alt="" /><a href="#!/editprofileemp"><i class="fa fa-pencil"></i> Change Picture</a>
+                <br>
+                <br>
                 <h1 class="name" > {{company_name}} </h1>
                 <h3 class="tagline" > {{username}} </h3><br>
 <!--                 <fieldset class="rating">
@@ -39,7 +41,9 @@
                 <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
                 <button type="follow">Follow</button><br>
             </div><!--//profile-container-->
-             
+             <div class="pull-right">
+                    <button class="btn-success" title="Edit Company Informations"><a href="#!/empprofile/editprofilecomp"><i class="fa fa-pencil"></i></a></button>
+                </div>
             <div class="contact-container container-block" ng-controller="getMyProfileServiceCtrl">
                 <p> {{company_website}} </p>
                 <p><a href="mailto: {{ email }}"> {{ company_email }} </a></p>
@@ -74,14 +78,19 @@
                 </ul>
             </div>
         <div class="row" >
-            <a href="#!/addjobs" class="btn btn-large btn-success pull-right">Add Jobs</a>
+         
+
+            <form ng-controller="addMoreJobsCtrl">
+            <input type="hidden" ng-model="id">
+            <a  class="btn btn-large btn-success pull-right" href="#!/addjobs"> Add Jobs</a>
+            </form>
         </div>
 
             <div class="tab">
               <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
               <button class="tablinks" onclick="openProfile(event, 'jobs')" id="defaultOpen">Manage Jobs</button>
               <button class="tablinks" onclick="openProfile(event, 'resume')">Applicant</button>
-              <!--<button class="tablinks" onclick="openProfile(event, 'Skills')">Skills</button>-->
+              <button class="tablinks" onclick="openProfile(event, 'mail')">Mail</button>
             </div>
             
             <!--<div id="Timeline" class="tabcontent">
@@ -89,27 +98,29 @@
               <p>Ini adalah Timeline</p>
             </div>-->
 
-            <div id="jobs" class="tabcontent"  >
+            <div id="jobs" class="tabcontent" >
               <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>List Jobs</h2>
                 
                 <div class="item" ng-controller="getMyProfileServiceCtrl">
-                <div  ng-repeat="job in jobs">
+                <div class="well"  ng-repeat="job in jobs |orderBy:'-created_at'">
                     <div class="meta" >
                         <div class="upper-row" >
                             <h3 class="job-title"><b>{{job.job_type.type_name}}</b></h3>
                             <div class="time">{{job.created_at}}</div>
                         </div>
-                        <div class="company">{{job.company.company_name}}</div>
+                        <div class="company">Available at {{job.job_open}} until {{job.job_close}}</div>
                     </div><!--//meta-->
                     <div class="details" >
+                        <p>Salary : Rp.{{job.min_salary}} - Rp.{{job.max_salary}}</p>
                         <p>Fasilitas : {{job.job_facilities}}</p>
-                        <p>Deskripsi :{{job.job_description}}</p>  
-                        <a href="#" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right"><i class="fa fa-times"></i><i class="icon-angle-right"></i></a>
-                    <a href="#" class="btn btn-large btn-success pull-right"><i class="fa fa-edit"></i><i class="icon-angle-right"></i></a>
+                       <!--  <p>Deskripsi :{{job.job_description}}</p>   -->
+                         <a href="#" ng-click="" class="pull-left">Read More</a>
+                        <a href="#" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right" title="Delete"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
+                    <a href="#!/empprofile/{{job.id}}/update" class="btn btn-large btn-success pull-right" title="Edit"><i class="fa fa-edit"></i><i class="icon-angle-right"></i></a>
                     </div>
                     <br>
-                    <hr>
+                   
                     </div>
                     </div><!--//details-->
 
@@ -130,19 +141,191 @@
                 </div><!--//intro-->
                 <div >
                 <div class="item" ng-repeat="bl in stude">
-                    <span class="project-title"><a href="#hook">{{bl.username}}</a></span> - 
+                    <span class="project-title"><a href="#!/studentprofile">{{bl.full_name}}</a></span> - 
                     <span class="project-tagline" >{{bl.full_name}}</span>
                     
                     
                 </div><!--//item-->
                 </div>
-                <div class="item">
-                    <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/" target="_blank">DevStudio</a></span> - 
-                    <span class="project-tagline">A responsive website template designed to help web developers/designers market their services. </span>
-                </div><!--//item-->
+               
             </section><!--//section-->
             </div>
+            
+            
+             
+            <div id="mail" >
+            <div class="tab" >
+              <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
+              <button class="tablinks" onclick="openProfile(event, 'inbox')" id="defaultOpen">Inbox</button>
+              <button class="tablinks" onclick="openProfile(event, 'outbox')">Outbox</button>
+               <button class="tablinks" onclick="openProfile(event, 'write')">Write Mail</button>
+             
+            </div>
+            <div id="inbox" class="tabcontent" >
+            <section class="section projects-section">
+                <div  class="mail-inbox">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Inbox</h2>
+                  <table class="table table-condensed table-hover">
+                  <thead>
+                    <tr>
+                      <th class="span1"><input type="checkbox"></th>
+                      <th class="span1"><h5>Sender</h5></th>
+                     
+                      <th class="span8"><h5>Message</h5></th>
+                      <th class="span1"><h5>Time Sent</h5></th>
+                       <th class="span1"></th>
+                    </tr>
+                  </thead>
+                  <tbody ng-controller="getMyMailCtrl">
+                    <tr ng-repeat="mail in inbox">
+                      <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
+                      <td>{{mail.sender.full_name}}</td>
+                      
+                      <td><strong>{{mail.title}} - </strong>{{mail.content| limitTo: 30}}</td>
+                      <td>{{mail.message_sent }}</td>
+                      <td><a href=""><i class="fa fa-mail-reply"></i></a> | <a href="" ng-click="deleteInbox(mail.id)"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+                    
+                   
+                   
+                  </tbody>
+                  </table>
+                </div>
+
+                
                
+            </section><!--//section-->
+            </div>
+
+            <!--OUTBOX-->
+             <div id="outbox" class="tabcontent" >
+            <section class="section projects-section">
+                <div  class="mail-inbox">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Outbox</h2>
+                  <table class="table table-condensed table-hover">
+                  <thead>
+                    <tr>
+                      <th class="span1"><input type="checkbox"></th>
+                      <th class="span1"><h5>Receiver</h5></th>
+                     
+                      <th class="span8"><h5>Message</h5></th>
+                      <th class="span1"><h5>Time Sent</h5></th>
+                       <th class="span1"></th>
+                    </tr>
+                  </thead>
+                  <tbody ng-controller="getMyMailCtrl">
+                    <tr ng-repeat="out in outbox">
+                      <td><input type="checkbox"> <a href="#"><i class="icon-star-empty"></i></a></td>
+                      <td>{{out.receiver.full_name}}</td>
+                      
+                      <td ng-init="limit = 15; moreShown = false"><strong>{{out.title}} - </strong>{{out.content| limitTo: limit}}{{out.content.length > limit ? '...' : ''}}
+                        <a ng-show="out.content.length > limit"
+                          href ng-click="limit=out.content.length; moreShown = true">  More
+                        </a>
+                        <a ng-show="moreShown" href ng-click="limit=15; moreShown = false"> Less </a>
+                      </td>
+                      <td>{{out.message_sent}}</td>
+                      <td> <a href="" ng-click="deleteOutbox(out.id)"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+                    
+                   
+                   
+                  </tbody>
+                  </table>
+                </div>
+
+                
+               
+            </section><!--//section-->
+            </div>
+
+
+            <div id="write" class="tabcontent" >
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Write Mail</h2>
+                <form class="form-horizontal" ng-controller="getMyMailCtrl">
+              <div class="box-body" >
+                <!--  <div class="form-group">
+                  <label for="receiver_id" class="col-sm-1 control-label">Receiver</label>
+
+                  <div class="col-sm-10"  >
+                    <input type="text" class="form-control"  ng-model="a" placeholder="Receiver">
+                  </div>
+                  <div >
+                  <button type="button" class="btn btn-theme" value="Send" ng-click="postMail(receiver_id,title,content)">Add</button>
+                  </div>
+                  <div class="col-sm-2">
+                  </div>
+                  <div ng-controller="getAllUsersCtrl">
+                  <div class="col-sm-10" ng-repeat="receiver in users | filter:a" >
+                     <input type="hidden" class="form-control" name="receiver_id" ng-model="receiver.full_name" placeholder="Receiver"> 
+                    <label for="receiver_id" >{{receiver.full_name}}</label>
+                  </div>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label class="col-sm-1 control-label">Receiver</label>
+                  <div class="col-sm-11">
+                    <select class="form-control" name="receiver_id" id="" ng-model="receiver_id" ng-change="changedValue(receiver_id)" data-ng-options="types.id as types.full_name for types in users">
+                      <option value="">Choose receiver...</option>
+                    </select>
+                   {{itemList}}
+                   <div >
+                    <input type="hidden" ng-repeat="items in itemList" ng-model="itemList">
+                    </div>
+                  </div>
+                </div>
+               
+                
+               <!--  <div class="form-group">
+                  <label class="col-sm-1 control-label">Receiver</label>
+                  <div class="col-sm-11" ng-controller="getAllUsersCtrl">
+                    <select class="form-control" name="receiver_id" id="" ng-model="receiver_id" ng-options="penerima.id as penerima.full_name for penerima in users">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="title" class="col-sm-1 control-label">Title</label>
+
+                  <div class="col-sm-11">
+                    <input type="text" class="form-control" name="title" ng-model="title" placeholder="Title">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="content"  class="col-sm-1 control-label">Content</label>
+
+                  <div class="col-sm-11">
+                  <textarea class="form-control" name="content" ng-model="content" rows="5" placeholder="Content Message"></textarea>
+                  </div>
+
+                </div>
+              
+                 
+               
+                 
+                
+            
+                
+              </div>
+              <br>
+             
+              <!-- /.box-body -->
+              <!-- /.box-body -->
+              <div class="text-right">
+               <button type="button" class="btn btn-theme" value="Send" ng-click="postMail(itemList,title,content)">Send Mail</button>
+                
+                <button type="submit" class="btn btn-theme">Cancel</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+                
+               
+            </section><!--//section-->
+            </div>
+            </div>
+            
             
         </div><!--//main-body-->
 
@@ -151,3 +334,6 @@
   </div>
       
   </section>
+
+<script src="assets/js/bootstrap.min.js"></script>
+
