@@ -24,6 +24,11 @@ var app = angular
     'myApp.editjobemployer',
     'myApp.editprofilecomp',
     'myApp.faq',
+    'myApp.tos',
+    'myApp.addCV',
+    'myApp.studentprofileselected',
+    'myApp.notif',
+    'myApp.filterstudents',
     
     'myApp.version',
     /*Controllers Declared Here*/
@@ -37,6 +42,12 @@ var app = angular
     'myApp.submitExample',
     'myApp.postTest',
     'myApp.angularjs-dropdown-multiselect',
+
+    //factory
+    'myApp.headerstoken',
+    // 'myApp.isLoggedIn',
+     // 'myApp.Session',
+
     /*Service Declared Here*/
     'myApp.studRegisterService',
     'myApp.emplRegisterService',
@@ -62,6 +73,10 @@ var app = angular
     'myApp.getMyMailService',
     'myApp.getAllUsersService',
     'myApp.getAllFaqService',
+    'myApp.getAllTosService',
+    'myApp.addCVService',
+    'myApp.studentprofileselected',
+    'myApp.notifService',
     // 'myApp.ngrollbar',
   ])
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

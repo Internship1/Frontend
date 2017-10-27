@@ -2,7 +2,7 @@
 
 angular.module('myApp.loginAuthService', [])
 
-.controller('loginAuthServiceCtrl', function($scope, $http, $location, $window) {
+.controller('loginAuthServiceCtrl', function($scope, $http, $location,  $rootScope, $window) {
 	$scope.email = null;
 	$scope.password =null;
 	
@@ -14,10 +14,12 @@ angular.module('myApp.loginAuthService', [])
 			
 		};
 		//call service
-		$http.post('http://192.168.0.8:8080/api/Login', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.16:8080/api/Login', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Post Success !";
 				$scope.regMsgStatus = response.status;
+				$rootScope.loggedIn = data;
+
 				if ($scope.regMsgStatus = 200) {
 
 						$scope.loginMsg = "Login Success !";
@@ -30,10 +32,11 @@ angular.module('myApp.loginAuthService', [])
 						//$location.path('/view1');
 				}
 				var tokenBearer = $scope.token;
-				console.log(tokenBearer);
-				// var decoded = jwt_decode(tokenBearer);
-				// $scope.decodedSub = decoded.sub;
-				// console.log(decoded.sub);
+				//console.log(tokenBearer);
+				var decoded = jwt_decode(tokenBearer);
+				 var role = decoded.role_id;
+				 $rootScope.role=role;
+				 //console.log($rootScope.role);
 				
 				//UNTUK NYIMPEN TOKEN di BROWSER
 				localStorage.setItem("KEY_TOKEN",JSON.stringify(tokenBearer));
@@ -41,7 +44,7 @@ angular.module('myApp.loginAuthService', [])
 				//$scope.header= 'Bearer ' + JSON.parse(getItem("KEY_TOKEN"));
 				//$http.defaults.headers.common.Authorization = 'Bearer ' + JSON.parse(sessionStorage.getItem("KEY_TOKEN"));
 				$http.defaults.headers.common.Authorization = 'Bearer ' + (tokenBearer);
-
+				//$window.location.reload()
 				//UNTUK NGAMBIL TOKEN LAGI
 				//decoded = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 					
@@ -56,6 +59,7 @@ angular.module('myApp.loginAuthService', [])
 		});
 
 	}
+	
 	//$scope.logout = function () {
 
 		//sessionService.destroy('KEY_TOKEN');
@@ -66,6 +70,7 @@ angular.module('myApp.loginAuthService', [])
             $window.localStorage.clear();
             $http.defaults.headers.common.Authorization = '';
             $location.path('/home');
+            $window.location.reload()
             //delete localStorage.getItem("KEY_TOKEN");
             //$http.defaults.headers.common.Authorization = '';
 			}

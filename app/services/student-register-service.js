@@ -22,7 +22,7 @@ angular.module('myApp.studRegisterService', [])
 			password:password
 		};
 		//call service
-		$http.post('http://192.168.0.8:8080/api/registerStudent', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.16:8080/api/registerStudent', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Register Successfull !";
 				$scope.regMsgStatus = response.status;
@@ -38,7 +38,7 @@ angular.module('myApp.studRegisterService', [])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var userEditProfileUrl = 'http://192.168.0.8:8080/api/usersProfile/store/#';
+		var userEditProfileUrl = 'http://192.168.0.16:8080/api/usersProfile/store/#';
 
 
 		var data = {

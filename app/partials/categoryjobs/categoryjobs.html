@@ -21,36 +21,51 @@
           </div>
         </div>
         <div class="row" >
-          <div class="col-lg-4" ng-repeat="job in jobs | filter:q |orderBy:'-created_at'">
+          <div class="col-lg-4" ng-repeat ="job in (results = (jobs | filter:q | orderBy:ord:'-created_at'))"
+            ng-if="$index >= (currentpage*pagesize) && $index < ((currentpage+1)*pagesize)">
           <div class="row">
             <div class="box">
               <div class="box-gray ">
                 <h5 class="aligncenter">{{job.job_type.type_name}}</h5>
-                <div class="icon">
-                <img src="assets/img/boarding_labs.png" class="aligncenter">
+                <div class="icon" >
+                <img ng-src="http://192.168.0.16:8080/images/company/{{job.employer.company.company_logo}}" class="aligncenter">
                 <br>
                 <br>
                 </div>
                 <a href="#!/categoryjob/company/{{job.employer_id}}"  ><i class="fa fa-suitcase"></i> {{ job.employer.company.company_name}}</a><br>
                 <i class="fa fa-map-marker"></i>   {{job.job_position}}<br>
                 <i class="fa fa-phone-square"></i> {{job.employer.company.company_contact}}<br>
-                <i class="fa fa-money"></i> {{job.min_salary}} <i class="glyphicon glyphicon-minus"></i> {{job.max_salary}}<br>
-                <i class="fa fa-calendar"></i> {{job.job_open}} <i class="glyphicon glyphicon-minus"></i> {{job.job_close}}<br>
+                <p style="font-size:10px"><i class="fa fa-money"></i> {{job.min_salary| currency:"Rp."}} <i class="glyphicon glyphicon-minus"></i> {{job.max_salary| currency:"Rp."}}<br>
+                <i class="fa fa-calendar"></i> {{job.job_open| date: 'dd MMMM yyyy'}} <i class="glyphicon glyphicon-minus"></i> {{job.job_close| date: 'dd MMMM yyyy'}}</p><br>
                 
               </div>
-              <div class="box-bottom">
-                <a href="" ng-click="postApply(job.id)">Apply</a>
+              <div class="box-bottom" >
+                <a href="" ng-click="postApply(job.id,job.employer_id)" >Apply</a>
+               <!--  <p style="font-size:10px" ng-hide="loggedIn"><b style="color:#ffffff">To Apply this job you must login first, </b><a href="#!/loginstud" > <u style="font-size:8px">Login</u></a></p> -->
               </div>
             </div>
           </div>
           </div>
         </div>
-        <div id="pagination">
-          <span class="all">Page 1 of 3</span>
-          <span class="current">1</span>
-          <a href="#" class="inactive">2</a>
-          <a href="#" class="inactive">3</a>
-        </div>
+        <div class="row text-center" >
+                         <ul class="pagination">
+                    <li>
+                      <a href="" aria-label="Previous" ng-click="paging(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li ng-repeat ="i in getNumber(pagenumber) track by $index"
+                        ng-class="currentpage == $index ? 'active':''">
+                        <a href="" ng-click="getPage($index)">{{$index +1}}</a>
+                    </li>
+                    
+                    <li>
+                      <a href="" aria-label="Next" ng-click="paging(1)">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>    
+                        </div>
       </div>
       <div class="col-lg-4">
         <aside class="right-sidebar">
@@ -69,13 +84,15 @@
         <div class="widget">
           <h5 class="widgetheading">Latest jobs</h5>
           <ul class="recent">
-            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 5">
-            <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-            <h6><a href="#">{{show.job_type.type_name}}</a></h6>
-            
-               {{ show.employer.company.company_name}}<br>
-               <p>{{show.created_at}}</p>
-            
+            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 6">
+            <img ng-src="http://192.168.0.16:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
+           
+            <a href="#!/categoryjob/company/{{show.employer_id}}" style="font-size:11px">{{ show.employer.company.company_name}}</a>
+             <p style="font-size:10.5px">
+             Has been post a job as {{show.job_type.type_name}}
+                at
+               {{show.created_at}}
+            </p>
             </li>
            
           </ul>

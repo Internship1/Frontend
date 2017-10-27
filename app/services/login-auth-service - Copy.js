@@ -14,7 +14,7 @@ angular.module('myApp.loginAuthService', [])
 			
 		};
 		//call service
-		$http.post('http://192.168.0.8:8080/api/Login', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.16:8080/api/Login', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Post Success !";
 				$scope.regMsgStatus = response.status;
@@ -36,10 +36,12 @@ angular.module('myApp.loginAuthService', [])
 				
 				//UNTUK NYIMPEN TOKEN di BROWSER
 				localStorage.setItem("KEY_TOKEN",JSON.stringify(tokenBearer));
+
 				//Storage.setItem("KEY_TOKEN",JSON.stringify(tokenBearer));
 				//$scope.header= 'Bearer ' + JSON.parse(getItem("KEY_TOKEN"));
 				//$http.defaults.headers.common.Authorization = 'Bearer ' + JSON.parse(sessionStorage.getItem("KEY_TOKEN"));
 				$http.defaults.headers.common.Authorization = 'Bearer ' + (tokenBearer);
+				
 
 				//UNTUK NGAMBIL TOKEN LAGI
 				//decoded = JSON.parse(localStorage.getItem("KEY_TOKEN"));

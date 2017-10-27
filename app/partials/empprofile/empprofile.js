@@ -12,6 +12,9 @@ angular.module('myApp.empprofile', ['ngRoute'])
   }).when('/empprofile/editprofilecomp', {
     templateUrl: 'partials/editprofilecomp/editprofilecomp.html',
     controller: 'editCompanyProfileServiceCtrl'
+  }).when('/studentprofile/:id', {
+    templateUrl: 'partials/studentprofileselected/studentprofileselected.html',
+    controller: 'studentprofileselectedCtrl'
   });
 }])
 

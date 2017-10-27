@@ -6,6 +6,12 @@ angular.module('myApp.studentprofile', ['ngRoute'])
   $routeProvider.when('/studentprofile', {
     templateUrl: 'partials/studentprofile/studentprofile.html',
     controller: 'studentprofileCtrl'
+  }).when('/studentprofile/notif', {
+    templateUrl: 'partials/notification/notif.html',
+    controller: 'getNotifCtrl'
+  }).when('/studentprofile/addCV', {
+    templateUrl: 'partials/addCV/addCV.html',
+    controller: 'addCVCtrl'
   });
 }])
 

@@ -20,10 +20,12 @@
         <!--ng-controller="getMyProfileServiceCtrl"-->
         
             <div class="profile-container" ng-controller="getMyProfileServiceCtrl" >
-                <img class="profile avatar" src="assets/img/profile.png" alt="" /><a href="#!/editprofileemp"><i class="fa fa-pencil"></i> Change Picture</a>
+           
+                <img class="profile avatar" ng-src="{{gambarlogo}}" alt="" /><br>
+                <a href="#!/editprofileemp"><i class="fa fa-pencil"></i> Change Picture</a>
                 <br>
                 <br>
-                <h1 class="name" > {{company_name}} </h1>
+                <h1 class="name"> {{company_name}} </h1>
                 <h3 class="tagline" > {{username}} </h3><br>
 <!--                 <fieldset class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -38,6 +40,7 @@
                     <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                 </fieldset> -->
                 <a class="nav-link" href="#!/editprofileemp"><img class="icon-default" src="assets/icons/settings-icon.png"></a><br><br>
+
                 <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
                 <button type="follow">Follow</button><br>
             </div><!--//profile-container-->
@@ -89,7 +92,7 @@
             <div class="tab">
               <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
               <button class="tablinks" onclick="openProfile(event, 'jobs')" id="defaultOpen">Manage Jobs</button>
-              <button class="tablinks" onclick="openProfile(event, 'resume')">Applicant</button>
+              <button class="tablinks" onclick="openProfile(event, 'resume')">New Applicant</button>
               <button class="tablinks" onclick="openProfile(event, 'mail')">Mail</button>
             </div>
             
@@ -98,31 +101,75 @@
               <p>Ini adalah Timeline</p>
             </div>-->
 
-            <div id="jobs" class="tabcontent" >
+            <div id="jobs" class="tabcontent" ng-controller="getMyProfileServiceCtrl">
               <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>List Jobs</h2>
+                <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group" role="group">
+                    <button type="button"
+                        ng-click="changeAction(p)"
+                        ng-repeat="p in pagesizes"
+                        class="btn btn-default">{{p}}</button>
+                </div>
+                </div>
                 
-                <div class="item" ng-controller="getMyProfileServiceCtrl">
-                <div class="well"  ng-repeat="job in jobs |orderBy:'-created_at'">
+                 <div class="col-md-4 pull-right" >
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                    <i class="glyphicon glyphicon-search"></i>
+                       </span>
+                    <input type="text" class="form-control" ng-model="q" placeholder="Search..." aria-describedby="basic-addon1">
+                </div>
+            </div>
+            </div>
+                
+                <div class="item" >
+                <div class="well"  ng-repeat ="job in (results = (jobs | filter:q | orderBy:ord:'-created_at'))"
+            ng-if="$index >= (currentpage*pagesize) && $index < ((currentpage+1)*pagesize)">
                     <div class="meta" >
                         <div class="upper-row" >
                             <h3 class="job-title"><b>{{job.job_type.type_name}}</b></h3>
-                            <div class="time">{{job.created_at}}</div>
+                            <div class="time" style="font-size:10.5px">{{job.created_at}}</div>
                         </div>
-                        <div class="company">Available at {{job.job_open}} until {{job.job_close}}</div>
+                        <div class="company" style="font-size:12px">Available at {{job.job_open| date: 'dd MMMM yyyy'}} until {{job.job_close| date: 'dd MMMM yyyy'}}</div>
                     </div><!--//meta-->
                     <div class="details" >
-                        <p>Salary : Rp.{{job.min_salary}} - Rp.{{job.max_salary}}</p>
+                        <p>Salary : {{job.min_salary| currency:"Rp."}} - {{job.max_salary|currency:"Rp."}}</p>
                         <p>Fasilitas : {{job.job_facilities}}</p>
                        <!--  <p>Deskripsi :{{job.job_description}}</p>   -->
                          <a href="#" ng-click="" class="pull-left">Read More</a>
                         <a href="#" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right" title="Delete"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
                     <a href="#!/empprofile/{{job.id}}/update" class="btn btn-large btn-success pull-right" title="Edit"><i class="fa fa-edit"></i><i class="icon-angle-right"></i></a>
+
                     </div>
                     <br>
+                     
                    
                     </div>
-                    </div><!--//details-->
+                    <div class="well" ng-if="results.length == 0">
+                    <p>   Search not found!</p>
+                      </div>
+                    <div class="row text-center" >
+                         <ul class="pagination">
+                    <li>
+                      <a href="" aria-label="Previous" ng-click="paging(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li ng-repeat ="i in getNumber(pagenumber) track by $index"
+                        ng-class="currentpage == $index ? 'active':''">
+                        <a href="" ng-click="getPage($index)">{{$index +1}}</a>
+                    </li>
+                    
+                    <li>
+                      <a href="" aria-label="Next" ng-click="paging(1)">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>    
+                        </div>
+                  </div><!--//details-->
 
 
                      
@@ -135,15 +182,17 @@
 
             <div id="resume" class="tabcontent" ng-controller="getMyProfileServiceCtrl">
             <section class="section projects-section">
-                <h2 class="section-title"><i class="fa fa-archive"></i>Applicant</h2>
+                <h2 class="section-title"><i class="fa fa-archive"></i>New Applicant</h2>
                 <div class="intro">
                     <p>Below is a list that has applied jobs to your company. Check it below!</p>
                 </div><!--//intro-->
                 <div >
-                <div class="item" ng-repeat="bl in stude">
-                    <span class="project-title"><a href="#!/studentprofile">{{bl.full_name}}</a></span> - 
-                    <span class="project-tagline" >{{bl.full_name}}</span>
-                    
+                <div class="well" ng-repeat="data in stude">
+                    <span class="project-title" ><a href="#!/studentprofile/{{data.student.id}}" title="see her profile">{{data.student.full_name}}</a></span> - 
+                    <span class="project-tagline" > applied your job as <b>{{data.job.jobtype.type_name}}</b></span>
+                    <span class="project-tagline" >with status <b><i><u>{{data.status.status}}</u></i></b>. Download and check her/his CV for more informations first in <i><a href="http://192.168.0.16:8080/cv/{{data.student.full_name}}.pdf">download CV</a></i></span>
+                     <a href="" ng-click="declineAppli(data.id)" class="btn btn-large btn-success pull-right" title="Decline"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
+                    <a href="" ng-click="acceptAppli(data.id)"  class="btn btn-large btn-success pull-right" title="Accept"><i class="fa fa-check"></i><i class="icon-angle-right"></i></a>
                     
                 </div><!--//item-->
                 </div>

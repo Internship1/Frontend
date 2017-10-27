@@ -9,7 +9,7 @@ angular.module('myApp.selectcompany', [])
 	
 	$scope.getCompany = function (id) {
 		var id = $routeParams.id;
-		var compUrl = 'http://192.168.0.8:8080/api/companies/';
+		var compUrl = 'http://192.168.0.16:8080/api/companies/';
 		//call service
 		
 	$http({

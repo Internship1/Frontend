@@ -5,13 +5,13 @@ angular.module('myApp.editJobEmpService', [])
 .controller('editJobEmpCtrl',  function($scope, $http, $routeParams) {
 		
 	var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
-	console.log(tokenBearer);
+	//console.log(tokenBearer);
 	var decoded = jwt_decode(tokenBearer);
-	console.log(decoded.sub);
+	console.log(decoded);
 	var userEndPoint = decoded.sub;
-	var EditJobUrl = 'http://192.168.0.8:8080/api/jobs/';
+	var EditJobUrl = 'http://192.168.0.16:8080/api/jobs/';
 	var perintah= "/update"
-	var JobsUrl = 'http://192.168.0.8:8080/api/jobs/';
+	var JobsUrl = 'http://192.168.0.16:8080/api/jobs/';
 	var id = $routeParams.id;
 	$http({
 		method: "GET",
@@ -34,7 +34,7 @@ angular.module('myApp.editJobEmpService', [])
 
 	$http({
 				method: "GET",
-				url: 'http://192.168.0.8:8080/api/jobTypes/all'
+				url: 'http://192.168.0.16:8080/api/jobTypes/all'
 			}).then(function successCallBack(response) {
 				$scope.jobtypes = response.data.jobtypes;
 				console.log($scope.jobtypes);
@@ -48,7 +48,7 @@ angular.module('myApp.editJobEmpService', [])
 	$scope.pilihType=function(jobtype_id){
 	        $scope.jobtype_id=jobtype_id;
 	         
-	    var urlqualifies = 'http://192.168.0.8:8080/api/typequalify/'
+	    var urlqualifies = 'http://192.168.0.16:8080/api/typequalify/'
 	    $http({
 	        method: "GET",
 	        url:  urlqualifies + $scope.jobtype_id

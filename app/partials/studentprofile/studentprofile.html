@@ -20,7 +20,9 @@
         <!--ng-controller="getMyProfileServiceCtrl"-->
         
             <div class="profile-container">
-                <img class="profile avatar" ng-src="{{gambar}}" alt="" /><a href="#!/editprofilestud"><i class="fa fa-pencil"></i> Change Picture</a>
+             <a class="nav-link pull-right" title="Notifications" href="#!/studentprofile/notif"><img class="icon-default" src="assets/icons/notif.png"></a>
+                <img class="profile avatar" ng-src="{{gambar}}" alt="" /><br>
+                <a href="#!/editprofilestud"><i class="fa fa-pencil"></i> Change Picture</a>
                 <h1 class="name"> {{student.full_name}} </h1>
                 <h3 class="tagline"> {{student.username}} </h3><br>
 <!--                 <fieldset class="rating">
@@ -40,7 +42,7 @@
                 <button type="follow">Follow</button><br>
             </div><!--//profile-container-->
               <div class="pull-right">
-                    <button class="btn-success"><a href="#!/editprofilestud"><i class="fa fa-pencil"></i></a></button>
+                    <button class="btn-success" title="Edit Profile"><a href="#!/editprofilestud"><i class="fa fa-pencil"></i></a></button>
                 </div>
             <div class="contact-container container-block">
                
@@ -86,14 +88,14 @@
                 </ul>
             </div>
             <div class="row">
-        <a href="#" class="btn btn-large btn-success pull-right">Add Curriculum Vitae</a>
+        <a href="#!/studentprofile/addCV" class="btn btn-large btn-success pull-right">Add Curriculum Vitae</a>
 
         </div>
             <div class="tab">
               <button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>
-              <button class="tablinks" onclick="openProfile(event, 'Experiences')">Experiences</button>
-              <button class="tablinks" onclick="openProfile(event, 'Projects')">Projects</button>
-              <button class="tablinks" onclick="openProfile(event, 'Skills')">Skills</button>
+             
+              <button class="tablinks" onclick="openProfile(event, 'Applied')">Applied Jobs</button>
+              <button class="tablinks" onclick="openProfile(event, 'Skills')">Your Skills</button>
               <button class="tablinks" onclick="openProfile(event, 'mail')">Mail</button>
             </div>
             
@@ -102,132 +104,84 @@
               <p>Ini adalah Timeline</p>
             </div>
 
-            <div id="Experiences" class="tabcontent">
+            <div id="Applied" class="tabcontent">
               <section class="section experiences-section">
-                <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>APPLIED JOBS</h2>
                 
-                <div class="item">
-                    <div class="meta">
-                        <div class="upper-row">
-                            <h3 class="job-title">Lead Developer</h3>
-                            <div class="time">2015 - Present</div>
-                        </div><!--//upper-row-->
-                        <div class="company">Startup Hubs, San Francisco</div>
-                    </div><!--//meta-->
-                    <div class="details">
-                        <p>Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo.</p>  
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                    </div><!--//details-->
-                </div><!--//item-->
+                <div class="row">
+               
                 
-                <div class="item">
-                    <div class="meta">
-                        <div class="upper-row">
-                            <h3 class="job-title">Senior Software Engineer</h3>
-                            <div class="time">2014 - 2015</div>
-                        </div><!--//upper-row-->
-                        <div class="company">Google, London</div>
-                    </div><!--//meta-->
-                    <div class="details">
-                        <p>Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>  
-                        
-                    </div><!--//details-->
-                </div><!--//item-->
+                 <div class="col-md-4 pull-right" >
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                    <i class="glyphicon glyphicon-search"></i>
+                       </span>
+                    <input type="text" class="form-control" ng-model="q" placeholder="Search..." aria-describedby="basic-addon1">
+                </div>
+            </div>
+            </div>
                 
-                <div class="item">
-                    <div class="meta">
-                        <div class="upper-row">
-                            <h3 class="job-title">UI Developer</h3>
-                            <div class="time">2012 - 2014</div>
-                        </div><!--//upper-row-->
-                        <div class="company">Amazon, London</div>
+                <div class="item" ng-controller="getMyProfileStudentCtrl">
+                <div class="well"  ng-repeat ="job in (results = (jobsApply | filter:q | orderBy:ord:'-created_at'))"
+            ng-if="$index >= (currentpage*pagesize) && $index < ((currentpage+1)*pagesize)">
+                    <div class="meta" >
+                        <div class="upper-row" >
+                            <h3 class="job-title"><b>{{job.jobtype.type_name}}</b></h3>
+                            <div class="time">{{job.created_at}}</div>
+                        </div>
+                        <div class="company">{{job.company.company_name}}</div>
                     </div><!--//meta-->
-                    <div class="details">
-                        <p>Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>  
-                    </div><!--//details-->
-                </div><!--//item-->
+                    <div class="details" >
+                        <p>Salary : {{job.min_salary| currency:"Rp."}} - {{job.max_salary| currency:"Rp."}}</p>
+                        <p>Fasilitas : {{job.job_facilities}}</p>
+                        <p>Position {{job.job_position}} </p>
+                         <a href="#" ng-click="" class="pull-right">Read More</a>
+                    </div>
+                    </div>
+                    <div class="well" ng-if="results.length == 0">
+                    <p>   Search not found!</p>
+                      </div>
+                    <div class="row text-center" >
+                         <ul class="pagination">
+                    <li>
+                      <a href="" aria-label="Previous" ng-click="paging(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li ng-repeat ="i in getNumber(pagenumber) track by $index"
+                        ng-class="currentpage == $index ? 'active':''">
+                        <a href="" ng-click="getPage($index)">{{$index +1}}</a>
+                    </li>
+                    
+                    <li>
+                      <a href="" aria-label="Next" ng-click="paging(1)">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>    
+                        </div>
+
+                  </div><!--//details-->
+                
+                
+                <br>
                 
             </section><!--//section-->
             </div>
 
-            <div id="Projects" class="tabcontent">
-            <section class="section projects-section">
-                <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
-                <div class="intro">
-                    <p>You can list your side projects or open source libraries in this section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
-                </div><!--//intro-->
-                <div class="item">
-                    <span class="project-title"><a href="#hook">Velocity</a></span> - <span class="project-tagline">A responsive website template designed to help startups promote, market and sell their products.</span>
-                    
-                </div><!--//item-->
-                <div class="item">
-                    <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/" target="_blank">DevStudio</a></span> - 
-                    <span class="project-tagline">A responsive website template designed to help web developers/designers market their services. </span>
-                </div><!--//item-->
-                <div class="item">
-                    <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-startups-tempo/" target="_blank">Tempo</a></span> - <span class="project-tagline">A responsive website template designed to help startups promote their products or services and to attract users &amp; investors</span>
-                </div><!--//item-->
-                <div class="item">
-                    <span class="project-title"><a href="hhttp://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-mobile-apps-atom/" target="_blank">Atom</a></span> - <span class="project-tagline">A comprehensive website template solution for startups/developers to market their mobile apps. </span>
-                </div><!--//item-->
-                <div class="item">
-                    <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-mobile-apps-delta/" target="_blank">Delta</a></span> - <span class="project-tagline">A responsive Bootstrap one page theme designed to help app developers promote their mobile apps</span>
-                </div><!--//item-->
-            </section><!--//section-->
-            </div>
             
-            <div id="Skills" class="tabcontent">
+            
+            <div id="Skills" class="tabcontent" ng-controller="getMyProfileStudentCtrl">
                <section class="skills-section section">
                 <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
                 <div class="skillset">        
-                    <div class="item">
-                        <h3 class="level-title">Python &amp; Django</h3>
+                    <div class="item" ng-repeat="skill in usersprofile">
+                        <h3 class="level-title">{{skill.name}}</h3>
                         <div class="level-bar">
                             <div class="level-bar-inner" data-level="98%">
                             </div>                                      
                         </div><!--//level-bar-->                                 
                     </div><!--//item-->
-                    
-                    <div class="item">
-                        <h3 class="level-title">Javascript &amp; jQuery</h3>
-                        <div class="level-bar">
-                            <div class="level-bar-inner" data-level="98%">
-                            </div>                                      
-                        </div><!--//level-bar-->                                 
-                    </div><!--//item-->
-                    
-                    <div class="item">
-                        <h3 class="level-title">Angular</h3>
-                        <div class="level-bar">
-                            <div class="level-bar-inner" data-level="98%">
-                            </div>                                      
-                        </div><!--//level-bar-->                                 
-                    </div><!--//item-->
-                    
-                    <div class="item">
-                        <h3 class="level-title">HTML5 &amp; CSS</h3>
-                        <div class="level-bar">
-                            <div class="level-bar-inner" data-level="95%">
-                            </div>                                      
-                        </div><!--//level-bar-->                                 
-                    </div><!--//item-->
-                    
-                    <div class="item">
-                        <h3 class="level-title">Ruby on Rails</h3>
-                        <div class="level-bar">
-                            <div class="level-bar-inner" data-level="85%">
-                            </div>                                      
-                        </div><!--//level-bar-->                                 
-                    </div><!--//item-->
-                    
-                    <div class="item">
-                        <h3 class="level-title">Sketch &amp; Photoshop</h3>
-                        <div class="level-bar">
-                            <div class="level-bar-inner" data-level="60%">
-                            </div>                                      
-                        </div><!--//level-bar-->                                 
-                    </div><!--//item-->
-                    
                 </div>  
             </section><!--//skills-section-->
             </div>

@@ -5,7 +5,7 @@ angular.module('myApp.getAllStudentService', [])
 .controller('getAllStudentCtrl', function($scope, $http) {
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.8:8080/api/users/allStudent'
+		url: 'http://192.168.0.16:8080/api/users/allStudent'
 	}).then(function successCallBack(response) {
 		$scope.studentData = response.data.users;
 	}, function errorCallBack(response) {

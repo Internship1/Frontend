@@ -20,7 +20,7 @@
           <div class="box box-info">
             <div class="box-header with-border" >
               <h3 class="box-title" align="center">EDIT PROFILE as student</h3>
-              <img class="avatar center" src="assets/img/avatar.png" alt=""  />
+              <img class="avatar center" ng-src="assets/img/avatar.png" alt=""  />
               <br>
             </div>
             <!-- /.box-header -->
@@ -56,6 +56,7 @@
                     <input type="text" class="form-control" name="username" ng-model="student.username" placeholder="">
                   </div>
                 </div>
+
                 <!--
                 <div class="form-group">
                   <label for="pwd" class="col-sm-2 control-label">Password</label>
@@ -97,18 +98,38 @@
                   <textarea class="form-control" name="description" ng-model="student.user_profile.description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
                   </div>
                 </div>
-                <!--<div class="form-group">
-                  <label for="pwd" class="col-sm-2 control-label">Qualifies</label>
-
+                <div class="form-group">
+                  <label for="images" class="col-sm-2 control-label">Photo Profile</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" name="password" ng-model="password" placeholder="Password">
+                    <input type="file" fileread="images" />
+                    <img src="{{images}}" width="100" height="50" alt="Image preview...">
+                    <br/>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label for="cv" class="col-sm-2 control-label">CV</label>
+                  <div class="col-sm-10">
+                    <input type="file" fileread="cv" />
+                    <br/>
                   </div>
                 </div>
+
+                <div class="form-group" >
+                  <label for="qualify_id" class="col-sm-2 control-label">Qualifies</label>
+
+                  <div class="col-sm-10" ng-repeat="qualify in qualifies">
+                     <input type="checkbox" checklist-model="qualify_id" checklist-value="qualify.id"> {{qualify.name}}
+                  </div>
+
+                </div>
+
                 
-              </div>-->
+              </div>
               <!-- /.box-body -->
               <div class="text-right">
-               <button type="button" class="btn btn-theme" value="Send" ng-click="editUser(student.full_name,student.email, student.gender, student.username); editStudent(student.user_profile.contact, student.user_profile.address, student.user_profile.description)">Edit</button>
+               <button type="button" class="btn btn-theme" value="Send" ng-click="editUser(student.full_name,student.email, student.gender, student.username); uploadImage(); uploadCV();
+               editStudent(student.user_profile.contact, student.user_profile.address, student.user_profile.description, student.user_profile.images, student.user_profile.cv, student.user_profile.qualify_id )
+              ">Edit</button>
                 
                 <button type="submit" class="btn btn-theme">Cancel</button>
               </div>

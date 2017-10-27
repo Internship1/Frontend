@@ -29,9 +29,9 @@
     <div class="row">
     <div class="well col-lg-12" ng-controller="getAllFaqCtrl">
         <!-- Description -->
-        <h4>FAQ</h4>
+        
         <dl ng-repeat="faq in faqs">
-          <dt>{{faq.question}}</dt>
+          <dt><h3>{{faq.question}}</h3></dt>
           <dd>{{faq.answer}}</dd>
         </dl>
       </div>

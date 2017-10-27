@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.addMoreJobsService', ["checklist-model"])
+angular.module('myApp.addMoreJobsService', ["checklist-model","720kb.datepicker"])
 
 .controller('addMoreJobsCtrl', function($scope, $http) {
 	
@@ -12,11 +12,11 @@ angular.module('myApp.addMoreJobsService', ["checklist-model"])
 	//$scope.job_status = null;
 	//$scope.jobtype_id = null;
 
-	var jobtypesUrl = 'http://192.168.0.8:8080/api/jobTypes/all';
+	var jobtypesUrl = 'http://192.168.0.16:8080/api/jobTypes/all';
 
 	$http({
 				method: "GET",
-				url: 'http://192.168.0.8:8080/api/jobTypes/all'
+				url: 'http://192.168.0.16:8080/api/jobTypes/all'
 			}).then(function successCallBack(response) {
 				$scope.jobtypes = response.data.jobtypes;
 				console.log($scope.jobtypes);
@@ -43,7 +43,7 @@ angular.module('myApp.addMoreJobsService', ["checklist-model"])
 	$scope.pilihType=function(jobtype_id){
 	        $scope.jobtype_id=jobtype_id;
 	         
-	    var urlqualifies = 'http://192.168.0.8:8080/api/typequalify/'
+	    var urlqualifies = 'http://192.168.0.16:8080/api/typequalify/'
 	    $http({
 	        method: "GET",
 	        url:  urlqualifies + $scope.jobtype_id
@@ -87,7 +87,7 @@ angular.module('myApp.addMoreJobsService', ["checklist-model"])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var jobsUrl = 'http://192.168.0.8:8080/api/jobs/store';
+		var jobsUrl = 'http://192.168.0.16:8080/api/jobs/store';
 		
 		// $scope.qualifiess= new Array($scope.qualifies.length);
 	 //    $scope.qualify_id = '';

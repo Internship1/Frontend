@@ -1,3 +1,4 @@
+ 
 <section id="inner-headline">
     <div class="container">
         <div class="row">
@@ -50,16 +51,7 @@
                     </select>
                   </div>
                 </div>
-<!-- 
-               <div class="form-group" >
-                 <label class="col-sm-2 control-label">Qualifies</label>
-                 <div class="col-sm-10">
-                <div ng-dropdown-multiselect="" options="example14data" selected-model="qualify_id" checkboxes="true" extra-settings="example14settings"></div> <pre>Selected Model: {{qualify_id}} | json</pre>
-                <input type="hidden" ng-model="qualify_id">
-                </div>
-                
-                </div>
-                </div> -->
+
                 <div class="form-group" >
                   <label for="qualify_id" class="col-sm-2 control-label">Qualifies</label>
 
@@ -68,10 +60,7 @@
                   </div>
 
                 </div>
-                <!--  <div>
-                 <h3>Selected User Roles </h3>
-                <pre class="ng-binding">{{qualify_id|json}}</pre>
-            </div> -->
+                
 
                
 
@@ -118,7 +107,7 @@
                       <option value="5000000">Rp.5000.000,00</option>
                     </select>
                   </div>
-                  <div class="col-sm-1" align="center"><i class="fa fa-window-minimize"></i></div>
+                  <div class="col-sm-1" align="center"><i class="glyphicon glyphicon-minus"></i></div>
                   <div class="col-sm-3">
                     <select class="form-control" name="max_salary" id="" ng-model="max_salary">
                       <option value="">Choose max salary...</option>
@@ -132,18 +121,36 @@
                   </div>
                 </div>
                
-                 <div class="form-group">
+                <div class="form-group">
                   <label for="job_open" class="col-sm-2 control-label">Job Open</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="job_open" ng-model="job_open" placeholder="Job Open">
+                  <div class="col-sm-5">
+                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                      <div class="input-group">
+                          <input class="form-control" ng-model="job_open" placeholder="Choose a date"/>
+                          <span class="input-group-addon" style="cursor: pointer">
+                          <i class="fa fa-lg fa-calendar"></i>
+                          </span>
+                      </div>
+                    </datepicker>
                   </div>
-                </div>
+                </div> 
+
+                 
+
+
                  <div class="form-group">
                   <label for="job_close" class="col-sm-2 control-label">Job Close</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="job_close" ng-model="job_close" placeholder="Job Close">
+                  <div class="col-sm-5">
+                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                      <div class="input-group">
+                          <input class="form-control" ng-model="job_close" placeholder="Choose a date"/>
+                          <span class="input-group-addon" style="cursor: pointer">
+                          <i class="fa fa-lg fa-calendar"></i>
+                          </span>
+                      </div>
+                    </datepicker>
                   </div>
                 </div> 
                 
@@ -179,3 +186,12 @@
             
         </div>
     </section>
+
+
+
+<!-- $(".date-picker").on("change", function () {
+    var id = $(this).attr("id");
+    var val = $("label[for='" + id + "']").text();
+    $("#msg").text(val + " changed");
+});
+$(".date-picker").datepicker(); -->

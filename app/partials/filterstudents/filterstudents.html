@@ -1,0 +1,114 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Browse Jobs</li>
+          <li class="active">Categories</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section id="content">
+  <div class="container" ng-controller="getAllJobsCtrl">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="big-cta">
+          <div class="cta-text">
+            <h2><span>BROWSE STUDENTS</span></h2>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col-lg-4" ng-repeat ="job in (results = (jobs | filter:q | orderBy:ord:'-created_at'))"
+            ng-if="$index >= (currentpage*pagesize) && $index < ((currentpage+1)*pagesize)">
+          <div class="row">
+            <div class="box">
+              <div class="box-gray ">
+                <h5 class="aligncenter">{{job.job_type.type_name}}</h5>
+                <div class="icon" >
+                <img ng-src="http://192.168.0.18:8080/images/company/{{job.employer.company.company_logo}}" class="aligncenter">
+                <br>
+                <br>
+                </div>
+                <a href="#!/categoryjob/company/{{job.employer_id}}"  ><i class="fa fa-suitcase"></i> {{ job.employer.company.company_name}}</a><br>
+                <i class="fa fa-map-marker"></i>   {{job.job_position}}<br>
+                <i class="fa fa-phone-square"></i> {{job.employer.company.company_contact}}<br>
+                <p style="font-size:10.5px"><i class="fa fa-money"></i> {{job.min_salary| currency:"Rp."}} <i class="glyphicon glyphicon-minus"></i> {{job.max_salary| currency:"Rp."}}<br>
+                <i class="fa fa-calendar"></i> {{job.job_open| date: 'dd MMMM yyyy'}} <i class="glyphicon glyphicon-minus"></i> {{job.job_close| date: 'dd MMMM yyyy'}}</p><br>
+                
+              </div>
+              <div class="box-bottom">
+                <a href="" ng-click="postApply(job.id,job.employer_id)">Invite</a>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="row text-center" >
+                         <ul class="pagination">
+                    <li>
+                      <a href="" aria-label="Previous" ng-click="paging(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li ng-repeat ="i in getNumber(pagenumber) track by $index"
+                        ng-class="currentpage == $index ? 'active':''">
+                        <a href="" ng-click="getPage($index)">{{$index +1}}</a>
+                    </li>
+                    
+                    <li>
+                      <a href="" aria-label="Next" ng-click="paging(1)">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>    
+                        </div>
+      </div>
+      <div class="col-lg-4">
+        <aside class="right-sidebar">
+        <div class="widget">
+          <form class="form-search">
+            <input class="form-control" type="text" ng-model="q" placeholder="Search..">
+          </form>
+        </div>
+        <div class="widget" ng-controller="getAllJobsCtrl">
+          <h5 class="widgetheading">Jobs Categories</h5>
+          <ul class="cat">
+            <li  ng-repeat="j in jb"><i class="icon-angle-right"></i><a href="#!/categoryjob/{{j.jobtype_id}}"  >{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
+          </ul>
+        </div>
+
+        <div class="widget">
+          <h5 class="widgetheading">Latest jobs</h5>
+          <ul class="recent">
+            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 6">
+            <img ng-src="http://192.168.0.18:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
+           
+            <a href="#!/categoryjob/company/{{show.employer_id}}" style="font-size:11px">{{ show.employer.company.company_name}}</a>
+             <p style="font-size:10.5px">
+             Has been post a job as {{show.job_type.type_name}}
+                at
+               {{show.created_at}}
+            </p>
+            </li>
+           
+          </ul>
+        </div>
+        <div class="widget">
+          <h5 class="widgetheading">Popular tags</h5>
+          <ul class="tags">
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Trends</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Internet</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Development</a></li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  </section>

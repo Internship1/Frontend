@@ -1,0 +1,131 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Student Profile</li>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section>
+  <div id="content">
+  <div class="container">
+    <div class="row">
+        
+        <div class="sidebar-wrapper" ng-controller="getMyProfileStudentCtrl"> 
+        <!--ng-controller="getMyProfileServiceCtrl"-->
+        
+            <div class="profile-container">
+             <a class="nav-link pull-right" title="Notifications" href="#!/empprofile/notif"><img class="icon-default" src="assets/icons/notif.png"></a>
+                <img class="profile avatar" ng-src="{{gambar}}" alt="" /><a href="#!/editprofilestud"><i class="fa fa-pencil"></i> Change Picture</a>
+                <h1 class="name"> {{student.full_name}} </h1>
+                <h3 class="tagline"> {{student.username}} </h3><br>
+<!--                 <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                </fieldset>
+                <a class="nav-link" href="#!/editprofilestud"><img class="icon-default" src="assets/icons/settings-icon.png"> --></a><br><br>
+                <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
+                <button type="follow">Follow</button><br>
+            </div><!--//profile-container-->
+              <div class="pull-right">
+                    <button class="btn-success" title="Edit Profile"><a href="#!/editprofilestud"><i class="fa fa-pencil"></i></a></button>
+                </div>
+            <div class="contact-container container-block">
+               
+                <p> I'am a {{ student.gender }} </p>
+               
+                <br>
+                <p><strong> Contact Me ! </strong></p>
+                 <p><i class="fa fa-envelope-o"></i><a href="mailto: {{ email }}"> {{ student.email }} </a></p>
+                <p> <i class="fa fa-phone-square"></i> {{ student.user_profile.contact }} </p>
+                <p> <i class="fa fa-home"></i> {{ student.user_profile.address }} </p>
+                <br>
+                <p><strong> About Me </strong></p>
+                <p> {{ student.user_profile.description }} </p>
+                <br>
+                <p><strong> Member Since : </strong> {{ student.created_at }} </p>
+            
+            </div>
+
+<!--             <div class="education-container container-block">
+                <h2 class="container-block-title">Education</h2>
+                <div class="item">
+                    <h4 class="degree">MSc in Computer Science</h4>
+                    <h5 class="meta">University of London</h5>
+                    <div class="time">2011 - 2012</div>
+                </div>
+                <div class="item">
+                    <h4 class="degree">BSc in Applied Mathematics</h4>
+                    <h5 class="meta">Bristol University</h5>
+                    <div class="time">2007 - 2011</div>
+                </div>
+            </div> -->
+            
+        </div><!--//sidebar-wrapper-->
+        
+
+        
+        <div class="main-wrapper">
+
+            <div class="follow"> 
+                <ul>
+                <li>Followers</li>
+                <li>Following</li>
+                </ul>
+            </div>
+            <div class="row">
+        <a href="#!/studentprofile" class="btn btn-large btn-success pull-right">Back</a>
+
+        </div>
+            
+            
+          <div class="tabcontent" ng-controller="getNotifCtrl">
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-bell"></i>Notifications</h2>
+                <div class="intro">
+                    
+                </div><!--//intro-->
+                <div >
+                <div class="well" ng-repeat="data in notif">
+                <span class="project-title" ><a href="#!/studentprofile/{{data.student.id}}" title="see her profile">{{data.company.company_name}}</a></span> - <br>
+                 <span class="project-tagline" > {{data.status}} as <b>{{data.job.jobtype.type_name}}</b>.</span>
+                   
+                    
+                    
+                     
+                    
+                </div><!--//item-->
+                </div>
+               
+            </section><!--//section-->
+            </div>
+
+            
+
+            
+            
+            
+
+            
+                         
+            
+        </div><!--//main-body-->
+
+    </div>
+  </div>
+  </div>
+      
+  </section>

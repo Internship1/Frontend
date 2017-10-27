@@ -51,6 +51,8 @@
         <div class="big-cta">
           <div class="cta-text">
             <h2>Welcome to our website<span> parttimejobseeker.com</span></h2>
+            <br>
+            <h4>to apply some jobs, you must login first.</h4>
           </div>
         </div>
       </div>
@@ -63,9 +65,9 @@
   <section id="content">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-8" ng-controller="loginAuthServiceCtrl">
 
-      <form class="form-horizontal" ng-controller="getAllPostingCtrl">
+      <form class="form-horizontal" ng-controller="getAllPostingCtrl" ng-show="loggedIn" >
               <div class="box-body" >
        <div class="form-group">
                   <label for="post_text"  class="col-sm-12 control-label">What are you doing now?</label>
