@@ -1,0 +1,180 @@
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <ul class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                   <li><a href="#!/studentprofile">Student Profile</a><i class="icon-angle-right"></i></li>
+                  <li class="active">Add CV</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </section>
+<section id="content" ng-controller="addCVCtrl">
+    <div class="container" ng-controller="getMyProfileStudentCtrl">
+            <div class="row" pdf-save-content="CV">
+            <div class="col-md-2"></div>
+          <div class="col-md-9">
+            <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title" align="center">CURRICULUM VITAE</h3>
+            
+              <br>
+            </div>
+            
+             <div class="box-body" ng-controller="getMyProfileStudentCtrl">
+             <div class="row">
+             <div class="col-sm-3"> 
+                  <img ng-src="http://192.168.0.13:8080/images/student/{{student.user_profile.images}}" width="170" height="300" alt=""  />
+              </div>
+             <div class="col-sm-6">
+              <h6>SELF INFORMATIONS</h6>
+                <table >
+                <tr>
+                  <th style="width: 200px"></th>
+                  <th style="width: 25px"></th>
+                  <th style="width: 900px"></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">Fullname</label></td>
+                  <td>:</td>
+                  <td>{{student.full_name}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">Email</label></td>
+                  <td>:</td>
+                  <td>{{student.email}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">Contact</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.contact}}</td>
+                </tr>
+                <tr>
+                  <td><label for="address" class="col-sm-2 control-label">Address</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.address}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="gender" class="col-sm-2 control-label">Gender</label></td>
+                  <td>:</td>
+                  <td>{{student.gender}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="description" class="col-sm-2 control-label">Description</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.description}}</td>
+                </tr>
+                </table>
+                </div>
+                
+            </div>
+            </div>
+            
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>EDUCATION HISTORIES</h6>
+                <table >
+                <tr>
+                  <th style="width: 200px"></th>
+                  <th style="width: 25px"></th>
+                 
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">SD</label></td>
+                  <td>:</td>
+                  <td>{{sd}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">SMP</label></td>
+                  <td>:</td>
+                  <td>{{smp}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">SMA</label></td>
+                  <td>:</td>
+                  <td>{{sma}}</td>
+                </tr>
+                <tr>
+                  <td><label for="address" class="col-sm-2 control-label">Kuliah</label></td>
+                  <td>:</td>
+                  <td>{{kuliah}}</td>
+                </tr>
+                </table>
+            </div>
+            <br>
+            
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>ORGANIZATION HISTORIES</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">1.</label></td>
+                  <td>{{work1}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">2.</label></td>
+                  <td>{{work2}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">3.</label></td>
+                  <td>{{work3}}</td>
+                </tr>
+                </table>
+            </div>
+            <br>
+            
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>PRESTASI</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">1.</label></td>             
+                  <td>{{prestasi1}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">2.</label></td>               
+                  <td>{{prestasi2}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">3.</label></td>
+                  <td>{{prestasi3}}</td>
+                </tr>              
+                </table>
+            </div>
+            <br>
+
+            <div class="box-body" ng-controller="getMyProfileStudentCtrl">
+              <h6>SKILLS</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                
+                <tr ng-repeat="skill in usersprofile">
+                  <td> <label for="email" class="col-sm-2 control-label">{{$index + 1}}.</label></td>             
+                  <td>{{skill.name}}</td>
+                </tr>
+                 
+                            
+                </table>
+            </div>
+            <br>
+            <button pdf-save-button="CV" pdf-name="CV_{{student.full_name}}.pdf" class="btn btn-theme">DOWNLOAD TO PDF</button>
+           
+            
+            
+        </div>
+        </div>
+         <div class="col-md-1"></div>
+        </div>
+    </section>

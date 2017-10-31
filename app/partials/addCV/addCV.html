@@ -15,72 +15,18 @@
     <div class="container" ng-controller="getMyProfileStudentCtrl">
             <div class="row">
           <!-- Horizontal Form -->
-          <div class="col-md-1"></div>
+          <div class="col-md-2"></div>
           <div class="col-md-9">
-          <div pdf-save-content="CV" >
+          <div >
           <div class="box box-info">
             <div class="box-header with-border" >
-              <h3 class="box-title" align="center">CURRICULUM VITAE</h3>
-              <img class="avatar center" ng-src="assets/img/avatar.png" alt=""  />
-              <br>
+              <h5 class="well" align="center">Please input your more data fisrt to complete your CV, and then download your CV to complete your profile details</h5>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal">
-              <div class="box-body">
-              <h5>SELF INFORMATIONS</h5>
-                <div class="form-group">
-                  <label for="full_name"  class="col-sm-2 control-label">Full Name</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="fullname" ng-model="student.full_name" placeholder="">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="email" class="col-sm-2 control-label">Email</label>
-
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" ng-model="student.email" placeholder="">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="gender" class="col-sm-2 control-label">Gender</label>
-                  <div class="col-sm-10">
-                    <input type="radio" ng-model="student.gender" value="Male" required>  Male <br/>
-                    <input type="radio" ng-model="student.gender" value="Female" required> Female <br/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="contact" class="col-sm-2 control-label">Contact</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="contact" ng-model="student.user_profile.contact" placeholder="Email">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="address" class="col-sm-2 control-label">Address</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="address" ng-model="student.user_profile.address" placeholder="">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="description"  class="col-sm-2 control-label">Descriptions</label>
-
-                  <div class="col-sm-10">
-                  <textarea class="form-control" name="description" ng-model="student.user_profile.description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
-                  </div>
-                </div>
-                
-                
-              </div>
-              <br>
-              
-
               <div class="box-body" >
-              <h5>EDUCATION HISTORIES</h5>
+              <h5 align="center">EDUCATION HISTORIES</h5>
                 <div class="form-group">
                   <label for="sd" class="col-sm-2 control-label">SD</label>
 
@@ -113,79 +59,228 @@
                 
               </div>
               <div class="box-body" >
-              <h5>ORGANIZATION HISTORIES</h5>
-                <div class="form-group">
+              <h5 align="center">ORGANIZATION HISTORIES</h5>
+              
                   <!-- <label for="org" class="col-sm-2 control-label">Organization Histories</label> -->
 
                   <div class="col-sm-12">
+                  <div class="form-group">
                     <input type="text" class="form-control" name="org1" ng-model="org1" placeholder="1) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="org2" ng-model="org2" placeholder="2) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="org3" ng-model="org3" placeholder="3) .....">
+                    </div>
                   </div>
-                </div>
+               
                 
               </div>
 
               <div class="box-body" >
-              <h5>WORK STORIES</h5>
-                <div class="form-group">
+              <h5 align="center">WORK STORIES</h5>
+                
                  <!--  <label for="work" class="col-sm-2 control-label">Work Stories</label> -->
 
                   <div class="col-sm-12">
+                  <div class="form-group">
                     <input type="text" class="form-control" name="work1" ng-model="work1" placeholder="1) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="work2" ng-model="work2" placeholder="2) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="work3" ng-model="work3" placeholder="3) .....">
+                    </div>
                   </div>
-                </div>
+                
                 
               </div>
               <div class="box-body" >
-              <h5>PRESTASI</h5>
-                <div class="form-group">
+              <h5 align="center">PRESTASI</h5>
+                
                  <!--  <label for="prestasi" class="col-sm-2 control-label">Prestasi</label>
  -->
                   <div class="col-sm-12">
+                  <div class="form-group">
                     <input type="text" class="form-control" name="prestasi1" ng-model="prestasi1" placeholder="1) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="prestasi2" ng-model="prestasi2" placeholder="2) .....">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" name="prestasi3" ng-model="prestasi3" placeholder="3) .....">
+                    </div>
                   </div>
-                </div>
+                
                 
               </div>
-              <div class="box-body" ng-controller="editStudentProfileServiceCtrl">
-              <h5>SKILLS</h5>
-                <div class="form-group" >
-                
-                  <!-- <label for="qualify_id" class="col-sm-2 control-label">Qualifies</label> -->
-                  <div class="col-sm-12" ng-repeat="qualify in qualifies">
-                     <input type="checkbox" checklist-model="qualify_id" checklist-value="qualify.id"> {{qualify.name}}
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              
-              <!-- /.box-footer -->
+             
             </form>
            
           </div>
           </div>
-          <div class="text-right">
-          <button pdf-save-button="CV" pdf-name="CV{{student.full_name}}.pdf" class="btn btn-theme">DOWNLOAD TO PDF</button>
-           <a  href="#!/studentprofile" class="btn btn-theme">Back</a>
-          </div>
+         
 
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-1"></div>
+          <br>
+          <br>
+          
+            <br>
+          <div class="row" pdf-save-content="CV">
+            <div class="col-md-2"></div>
+          <div class="col-md-9">
+            <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title" align="center">CURRICULUM VITAE</h3>
+            </div>
+             <div class="box-body" ng-controller="getMyProfileStudentCtrl">
+             <div class="row">
+             <div class="col-sm-3"> 
+                  <img ng-src="http://192.168.0.13:8080/images/student/{{student.user_profile.images}}" width="170" height="300" alt=""  />
+              </div>
+             <div class="col-sm-6">
+              <h6>SELF INFORMATIONS</h6>
+                <table >
+                <tr>
+                  <th style="width: 200px"></th>
+                  <th style="width: 25px"></th>
+                  <th style="width: 900px"></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">Fullname</label></td>
+                  <td>:</td>
+                  <td>{{student.full_name}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">Email</label></td>
+                  <td>:</td>
+                  <td>{{student.email}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">Contact</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.contact}}</td>
+                </tr>
+                <tr>
+                  <td><label for="address" class="col-sm-2 control-label">Address</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.address}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="gender" class="col-sm-2 control-label">Gender</label></td>
+                  <td>:</td>
+                  <td>{{student.gender}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="description" class="col-sm-2 control-label">Description</label></td>
+                  <td>:</td>
+                  <td>{{student.user_profile.description}}</td>
+                </tr>
+                </table>
+                </div>
+                
+            </div>
+            </div>
+            
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>EDUCATION HISTORIES</h6>
+                <table >
+                <tr>
+                  <th style="width: 200px"></th>
+                  <th style="width: 25px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">SD</label></td>
+                  <td>:</td>
+                  <td>{{sd}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">SMP</label></td>
+                  <td>:</td>
+                  <td>{{smp}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">SMA</label></td>
+                  <td>:</td>
+                  <td>{{sma}}</td>
+                </tr>
+                <tr>
+                  <td><label for="address" class="col-sm-2 control-label">Kuliah</label></td>
+                  <td>:</td>
+                  <td>{{kuliah}}</td>
+                </tr>
+                </table>
+            </div>
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>ORGANIZATION HISTORIES</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">1.</label></td>
+                  <td>{{work1}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">2.</label></td>
+                  <td>{{work2}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">3.</label></td>
+                  <td>{{work3}}</td>
+                </tr>
+                </table>
+            </div>
+            <div class="box-body" ng-controller="addCVCtrl">
+              <h6>PRESTASI</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr>
+                  <td> <label for="email" class="col-sm-2 control-label">1.</label></td>             
+                  <td>{{prestasi1}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="email" class="col-sm-2 control-label">2.</label></td>               
+                  <td>{{prestasi2}}</td>
+                </tr>
+                 <tr>
+                  <td><label for="contact" class="col-sm-2 control-label">3.</label></td>
+                  <td>{{prestasi3}}</td>
+                </tr>              
+                </table>
+            </div>
+            <div class="box-body" ng-controller="getMyProfileStudentCtrl">
+              <h6>SKILLS</h6>
+                <table >
+                <tr>
+                  <th style="width: 50px"></th>
+                  <th style="width: 900px"></th>
+                </tr>
+                <tr ng-repeat="skill in usersprofile">
+                  <td> <label for="email" class="col-sm-2 control-label">{{$index + 1}}.</label></td>             
+                  <td>{{skill.name}}</td>
+                </tr> 
+                </table>
             </div>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br><br>
-            
+             <div class="text-right">
+          <a  pdf-save-button="CV" pdf-name="CV_{{student.full_name}}.pdf" class="btn btn-theme" >DOWNLOAD TO PDF</a>
+           <a  href="#!/uploadCV" class="btn btn-theme">Lanjutkan</a>
+          </div>
+        </div>
+        </div>
+         <div class="col-md-1"></div>
+        </div>
+            </div>
+
         </div>
     </section>

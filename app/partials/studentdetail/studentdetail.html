@@ -1,0 +1,97 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Browse Jobs</li>
+          <li class="active">Categories</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section id="content">
+  <div class="container" ng-controller="getStudentDetailCtrl">
+    <div class="row" ng-init="getStudentbDetail()">
+    <div class="col-lg-3"></div>
+      <div class="col-lg-7">
+        <div class="big-cta">
+          <div class="cta-text">
+            
+          </div>
+        </div>
+        <div  >
+          <div class="item" >
+                <div class="well">
+                    <div class="meta" >
+                        <div class="upper-row" >
+                        <div class="time pull-right" ></div>
+                            <h3 class="job-title"><b>{{student.user.full_name}}</b></h3>
+                            <!-- <a href="#!/categoryjob/company/{{jobs.employer_id}}"><b>{{jobs.employer.company.company_name}}</b></a><br> -->
+                           
+                            <i class="fa fa-map-marker"></i> {{student.address}}
+
+                        </div>
+                        <br>
+                            
+                    </div><!--//meta-->
+                    <div class="details" >
+                    <p>I'm a {{student.user.gender}}</p>
+                    This is my detail informations:
+                    <table >
+                        <tr>
+                          <th style="width: 200px"></th>
+                          <th style="width: 25px"></th>
+                          <th style="width: 900px"></th>
+                          <th></th>
+                        </tr>
+                        
+                        
+                         <tr>
+                          <td><label for="email" class=" control-label">Contact</label></td>
+                          <td>:</td>
+                          <td>{{student.contact}}</td>
+                        </tr>
+                         
+                        <tr>
+                          <td><label for="address" class=" control-label">Description</label></td>
+                          <td>:</td>
+                          <td>{{student.description}}</td>
+                        </tr>
+                        <tr>
+                          <td><label for="address" class=" control-label">Member since</label></td>
+                          <td>:</td>
+                          <td>{{student.created_at}}</td>
+                        </tr>
+                        <br>
+                         <tr>
+                          <td><label for="description" class=" control-label">Skills</label></td>
+                          <td>:</td>
+                          <td > 
+                              <ul>
+                                <li ng-repeat="qualify in qualifies">{{qualify.name}}</li> 
+                              </ul>
+                          </td>
+                        </tr>
+                    </table>
+
+                        <div class="row" >
+                            <a  class="btn btn-large btn-success pull-right" href="#!/filterstudents/{{student.user_id}}">Back</a>
+                        </div>
+
+                    </div>
+                    <br>
+                     
+                   
+                    </div>
+                    
+                    
+                  </div><!--//details-->
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+  </section>

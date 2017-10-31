@@ -10,9 +10,9 @@ angular.module('myApp.getMyProfileStudentService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var usersUrl = 'http://192.168.0.16:8080/api/users/';
-	var userProfileUrl = 'http://192.168.0.16:8080/api/usersProfile/';
-	var applyJobsUrl = 'http://192.168.0.16:8080/api/applies/student/';
+	var usersUrl = 'http://192.168.0.13:8080/api/users/';
+	var userProfileUrl = 'http://192.168.0.13:8080/api/usersProfile/';
+	var applyJobsUrl = 'http://192.168.0.13:8080/api/applies/student/';
 	
 
 	$http({
@@ -21,15 +21,22 @@ angular.module('myApp.getMyProfileStudentService', [])
 	}).then(function successCallBack(response) {
 		$scope.student = response.data.user;
 		var images = response.data.user.user_profile.images;
-		$scope.gambar = 'http://192.168.0.16:8080/images/student/' + images;
+		$scope.gambar = 'http://192.168.0.13:8080/images/student/' + images;
+		$scope.contact= response.data.user.user_profile.contact;
 
+			if ($scope.contact == null){
+				//$scope.cekCompany = false;
+				window.location="#!/editprofilestud";
+			} 	
+				
+			
 		
 	}, function errorCallBack(response) {
 		$scope.errorMessage = 'Ops, Something went wrong when displaying data!';
 		$scope.status = response.status;
 		$scope.statusText = response.statusText;
 	});
-
+	
 	$http({
 		method: "GET",
 		url: userProfileUrl + userEndPoint
@@ -43,7 +50,7 @@ angular.module('myApp.getMyProfileStudentService', [])
 		$scope.status = response.status;
 		$scope.statusText = response.statusText;
 	});
-
+	
 	 $scope.pagesizes= [3,6,9,12];
     $scope.pagesize= $scope.pagesizes[0];//jumlah baris dalam satu halaman
     $scope.currentpage= 0;//lokasi halaman saat ini

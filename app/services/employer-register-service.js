@@ -16,7 +16,7 @@ angular.module('myApp.emplRegisterService', [])
 			password:password
 		};
 		//call service
-		$http.post('http://192.168.0.16:8080/api/registerEmployer', JSON.stringify(data)).then(function(response) {
+		$http.post('http://192.168.0.13:8080/api/registerEmployer', JSON.stringify(data)).then(function(response) {
 			if (response.data)
 				$scope.regMsg = "Register Successfull !";
 				$scope.regMsgStatus = response.status;

@@ -27,15 +27,16 @@
               <div class="box-gray ">
                 <h5 class="aligncenter">{{select.job_type.type_name}}</h5>
                 <div class="icon" >
-                <img ng-src="http://192.168.0.20:8080/images/company/{{select.employer.company.company_logo}}" class="aligncenter">
+                <img ng-src="http://192.168.0.13:8080/images/company/{{select.employer.company.company_logo}}" class="aligncenter">
                 <br>
                 <br>
                 </div>
                 <a href="#!/categoryjob/company/{{select.employer_id}}"  ><i class="fa fa-suitcase"></i> {{ select.employer.company.company_name}}</a><br>
                 <i class="fa fa-map-marker"></i>   {{select.job_position}}<br>
                 <i class="fa fa-phone-square"></i> {{select.employer.company.company_contact}}<br>
-                <i class="fa fa-money"></i> {{select.min_salary| currency:"Rp."}} <i class="glyphicon glyphicon-minus"></i> {{select.max_salary| currency:"Rp."}}<br>
-                <i class="fa fa-calendar"></i> {{select.job_open| date: 'dd MMMM yyyy'}} <i class="glyphicon glyphicon-minus"></i> {{select.job_close| date: 'dd MMMM yyyy'}}<br>
+                <p style="font-size:10px"><i class="fa fa-money"></i> {{select.min_salary| currency:"Rp."}} <i class="glyphicon glyphicon-minus"></i> {{select.max_salary| currency:"Rp."}}<br>
+                <i class="fa fa-calendar"></i> {{select.job_open| date: 'dd MMMM yyyy'}} <i class="glyphicon glyphicon-minus"></i> {{select.job_close| date: 'dd MMMM yyyy'}}</p><br>
+                <a href="#!/categoryjobs/{{select.id}}/detail" ng-click="getJob(select.id)" class="pull-right" style="font-size:10.5px"><u>See Details Job</u></a>
               </div>
               <div class="box-bottom">
                 <a ng-click="postApply(job.id)">Apply</a>
@@ -72,17 +73,20 @@
             <li><i class="icon-angle-right"></i><a href="#">Copy Writter</a><span> (18)</span></li>-->
           </ul>
         </div>
-        <div class="widget">
-          <h5 class="widgetheading">Latest posts</h5>
+       <div class="widget">
+          <h5 class="widgetheading">Latest jobs</h5>
           <ul class="recent">
-            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 5">
-            <img ng-src="http://192.168.0.20:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
-            <h6><a href="#">{{show.job_type.type_name}}</a></h6>
-            
-               {{ show.employer.company.company_name}}<br>
-               <p>{{show.created_at}}</p>
-            
+            <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 6">
+            <img ng-src="http://192.168.0.13:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
+           
+            <a href="#!/categoryjob/company/{{show.employer_id}}" style="font-size:11px">{{ show.employer.company.company_name}}</a>
+             <p style="font-size:10.5px">
+             Has been post a job as {{show.job_type.type_name}}
+                at
+               {{show.created_at}}
+            </p>
             </li>
+           
           </ul>
         </div>
         <div class="widget">

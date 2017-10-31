@@ -10,7 +10,7 @@ angular.module('myApp.getMyCompanyService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var userProfileUrl = 'http://192.168.0.16:8080/api/companies/';
+	var userProfileUrl = 'http://192.168.0.13:8080/api/companies/';
 
 	$http({
 		method: "GET",

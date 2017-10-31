@@ -1,0 +1,123 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Browse Jobs</li>
+          <li class="active">Categories</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section id="content">
+  <div class="container" ng-controller="getJobDetailCtrl">
+    <div class="row" ng-init="getJobDetail()">
+      <div class="col-lg-8">
+        <div class="big-cta">
+          <div class="cta-text">
+            <h2><span>Job Detail</span></h2>
+          </div>
+        </div>
+        <div  >
+          <div class="item" >
+                <div class="well">
+                    <div class="meta" >
+                        <div class="upper-row" >
+                        <div class="time pull-right" style="font-size:10.5px">{{jobs.created_at}}</div>
+                            <h3 class="job-title"><b>{{jobs.job_type.type_name}}</b></h3>
+                            <a href="#!/categoryjob/company/{{jobs.employer_id}}"><b>{{jobs.employer.company.company_name}}</b></a><br>
+                            <i class="fa fa-map-marker"></i> {{jobs.job_position}}
+
+                        </div>
+                        <br>
+                            
+                    </div><!--//meta-->
+                    <div class="details" >
+                    <table >
+                        <tr>
+                          <th style="width: 200px"></th>
+                          <th style="width: 25px"></th>
+                          <th style="width: 900px"></th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td><label for="email" class=" control-label">Available at</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_open| date: 'dd MMMM yyyy'}} until {{jobs.job_close| date: 'dd MMMM yyyy'}}</td>
+                        </tr>
+                        
+                         <tr>
+                          <td><label for="email" class=" control-label">Salary</label></td>
+                          <td>:</td>
+                          <td>{{jobs.min_salary| currency:"Rp."}} - {{jobs.max_salary|currency:"Rp."}}</td>
+                        </tr>
+                         <tr>
+                          <td><label for="contact" class=" control-label">Facilities</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_facilities}}</td>
+                        </tr>
+                        <tr>
+                          <td><label for="address" class=" control-label">Jobs Description</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_description}}</td>
+                        </tr>
+                        
+                         <tr>
+                          <td><label for="description" class=" control-label">Qualifies need</label></td>
+                          <td>:</td>
+                          <td > 
+                              <ul>
+                                <li ng-repeat="qualify in qualifies">{{qualify.name}}</li> 
+                              </ul>
+                          </td>
+                        </tr>
+                    </table>
+
+                        <div class="row" >
+                            <a  class="btn btn-large btn-success pull-right" href="#!/categoryjobs">Back</a>
+                        </div>
+
+                    </div>
+                    <br>
+                     
+                   
+                    </div>
+                    
+                    
+                  </div><!--//details-->
+        </div>
+        
+      </div>
+      <div class="col-lg-4">
+        <aside class="right-sidebar">
+        <div class="widget">
+          <form class="form-search">
+            <input class="form-control" type="text" ng-model="q" placeholder="Search..">
+          </form>
+        </div>
+        <div class="widget" ng-controller="getAllJobsCtrl">
+          <h5 class="widgetheading">Jobs Categories</h5>
+          <ul class="cat">
+            <li  ng-repeat="j in jb"><i class="icon-angle-right"></i><a href="#!/categoryjob/{{j.jobtype_id}}"  >{{j.type_name}}</a><span > ({{j.jumlah}})</span></li>
+          </ul>
+        </div>
+
+        
+        <div class="widget">
+          <h5 class="widgetheading">Popular tags</h5>
+          <ul class="tags">
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Trends</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Internet</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Development</a></li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  </section>

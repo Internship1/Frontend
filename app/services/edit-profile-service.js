@@ -23,9 +23,9 @@ angular.module('myApp.editStudentProfileService', ["checklist-model","angularFil
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var userEditStudentProfileUrl = 'http://192.168.0.16:8080/api/usersProfile/';
-	var userEditProfileUrl = 'http://192.168.0.16:8080/api/users/';
-	var qualifiesUrl = 'http://192.168.0.16:8080/api/qualifies/all';
+	var userEditStudentProfileUrl = 'http://192.168.0.13:8080/api/usersProfile/';
+	var userEditProfileUrl = 'http://192.168.0.13:8080/api/users/';
+	var qualifiesUrl = 'http://192.168.0.13:8080/api/qualifies/all';
 	var perintah= "/update"
 	
 	
@@ -124,14 +124,14 @@ angular.module('myApp.editStudentProfileService', ["checklist-model","angularFil
 		$scope.statusText = response.statusText;
 	});
 
-	$scope.editStudent = function(contact, address, description,  images, cv, qualify_id) {
+	$scope.editStudent = function(contact, address, description,  images,  qualify_id) {
 		
 		var data = {
 			contact:contact,
 			address:address,
 			description:description,
 			images:$scope.images,
-			cv:$scope.cv,
+			
 			qualify_id:JSON.stringify($scope.qualify_id),
 
 			

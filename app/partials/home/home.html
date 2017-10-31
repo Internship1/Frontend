@@ -65,64 +65,58 @@
   <section id="content">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8" ng-controller="loginAuthServiceCtrl">
+      <div class="col-lg-8" ng-controller="getAllJobsCtrl">
 
-      <form class="form-horizontal" ng-controller="getAllPostingCtrl" ng-show="loggedIn" >
-              <div class="box-body" >
-       <div class="form-group">
-                  <label for="post_text"  class="col-sm-12 control-label">What are you doing now?</label>
+      
 
-                  <div class="col-sm-12">
-                  <textarea class="form-control" name="post_text" ng-model="post_text" rows="5" placeholder=" are you have information about job?"></textarea>
-                  </div>
-                </div>
-                </div>
-              <br>
-             
-              <!-- /.box-body -->
-              <!-- /.box-body -->
-              <div class="text-right">
-                <button type="button" class="btn btn-theme" value="Send" ng-click="postMorePosting(post_text)">Post</button>
-                
-                <button type="submit" class="btn btn-theme">Cancel</button>
-              </div>
-              <!-- /.box-footer -->
-            </form>
-
-            <br>
-            <br>
-            <div ng-controller="getAllPostingCtrl">
-         <div class="well well-sm" ng-repeat="p in posting |filter:search|orderBy: '-created_at'" >   
+          
+            <div >
+         <div ng-repeat="job in (results = (jobs | filter:search | orderBy:ord:'-created_at'))"
+            ng-if="$index >= (currentpage*pagesize) && $index < ((currentpage+1)*pagesize)" >   
         <article  >
            <!--  <div class="post-image">
             </div> -->
               <div class="post-heading">
-                <h5><a href="#"> {{p.user.full_name}}</a></h5>
+                <h5><a href="#!/categoryjob/company/{{job.employer_id}}"  > {{ job.employer.company.company_name}}</a> | {{job.job_type.type_name}} <br></h5>
               </div>
               <!-- <img src="assets/img/dummies/blog/img1.jpg" alt="" /> -->
-            
-            <p>
-               {{p.post_text}}
-            </p>
+              <i class="fa fa-map-marker"></i>   {{job.job_position}}<br>
+                <i class="fa fa-phone-square"></i> {{job.employer.company.company_contact}}<br>
+                with facilities such as {{job.job_facilities}}<br>
+                Jobs available at {{job.job_open| date: 'dd MMMM yyyy'}} <i class="glyphicon glyphicon-minus"></i> {{job.job_close| date: 'dd MMMM yyyy'}}<br>
             <div class="bottom-article">
               <ul class="meta-post">
-                <li><i class="icon-calendar"></i><a href="#">{{p.created_at}}</a></li>
-                <li><i class="icon-user"></i><a href="#"> Admin</a></li>
+                <li><i class="icon-calendar"></i><a href="#">{{job.created_at}}</a></li>
                 <li><i class="icon-folder-open"></i><a href="#"> Like</a></li>
                 <li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
               </ul>
-              <a href="#" class="pull-right">Read More <i class="icon-angle-right"></i></a>
+              <a href="#!/categoryjobs/{{job.id}}/detail" ng-click="getJob(job.id)" class="pull-right">Read More <i class="icon-angle-right"></i></a>
             </div>
-           
         </article>
+
          </div>
          </div>
         
         
-        <div id="pagination">
-          <span class="all"><a href="" >Learn More</a></span>
-          
-        </div>
+        <div class="row text-center" >
+                         <ul class="pagination">
+                    <li>
+                      <a href="" aria-label="Previous" ng-click="paging(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li ng-repeat ="i in getNumber(pagenumber) track by $index"
+                        ng-class="currentpage == $index ? 'active':''">
+                        <a href="" ng-click="getPage($index)">{{$index +1}}</a>
+                    </li>
+                    
+                    <li>
+                      <a href="" aria-label="Next" ng-click="paging(1)">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>    
+                        </div>
       </div><!--col-->
 
       <div class="col-lg-4">
@@ -132,45 +126,26 @@
             <input class="form-control" type="text" ng-model="search" placeholder="Search..">
           </form>
         </div>
-        <div class="widget">
-          <h5 class="widgetheading">Online</h5>
-          <ul class="cat">
-            <li><i class="icon-angle-right"></i><a href="#">Icih</a></li>
-            <li><i class="icon-angle-right"></i><a href="#">Ocoh</a></li>
-            <li><i class="icon-angle-right"></i><a href="#">Ecah</a></li>
-            <li><i class="icon-angle-right"></i><a href="#">Cantika</a></li>
-            <li><i class="icon-angle-right"></i><a href="#">Micheal</a></li>
-          </ul>
-        </div>
-        <div class="widget">
-          <h5 class="widgetheading">Recent Posts..</h5>
-          <ul class="recent">
-            <li>
+        
+        <div class="widget" ng-controller="getAllCompaniesCtrl">
+          <h5 class="widgetheading">Company Joined</h5>
+          <ul class="recent" style="font-size:11px">
+            <li ng-repeat="comp in companiestData | orderBy: '-created_at'| limitTo: 7">
             <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-            <h6><a href="#">Nama User</a></h6>
-            <p>
-               isi post user dsfdsssssssss csdjshfjshdfjs fnjdshfjdshfjdshfjhdsjfhjs isi post user dsfdsssssssss 
-            </p>
-            </li>
-           <li>
-            <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-            <h6><a href="#">Nama User</a></h6>
-            <p>
-               isi user isi post user dsfdsssssssss csdjshfjshdfjs fnjdshfjdshfjdshfjhdsjfhjs isi post user dsfdsssssssss 
-            </p>
-            </li>
+            <h6><a href="#!/categoryjob/company/{{comp.employer_id}}">{{comp.company_name}}</a></h6>
+            <i class="fa fa-map-marker"></i> {{comp.company_address}}<br>
+            <i class="fa fa-phone-square"></i> {{comp.company_contact}}<br>
+             <i class=" fa fa-envelope"></i> {{comp.company_email}}
            
+           
+            </li>
           </ul>
         </div>
-        <div class="widget">
-          <h5 class="widgetheading">Popular tags</h5>
-          <ul class="tags">
-            <li><a href="#">Web design</a></li>
-            <li><a href="#">Trends</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Internet</a></li>
-            <li><a href="#">Tutorial</a></li>
-            <li><a href="#">Development</a></li>
+        <div class="widget" ng-controller="getAllCompaniesCtrl">
+          <h5 class="widgetheading">Jobs Available</h5>
+          <ul class="tags" ng-repeat="type in jobtypes">
+            <li><a href="">{{type.type_name}}</a></li>
+           
           </ul>
         </div>
         </aside>

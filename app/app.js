@@ -29,6 +29,13 @@ var app = angular
     'myApp.studentprofileselected',
     'myApp.notif',
     'myApp.filterstudents',
+    'myApp.previewCV',
+    'myApp.uploadCV',
+    'myApp.jobemploydetail',
+    'myApp.categoryjobdetail',
+    'myApp.selectstudentqualify',
+    'myApp.studentdetail',
+    'myApp.filterworkers',
     
     'myApp.version',
     /*Controllers Declared Here*/
@@ -77,6 +84,9 @@ var app = angular
     'myApp.addCVService',
     'myApp.studentprofileselected',
     'myApp.notifService',
+    'myApp.getJobDetailService',
+    'myApp.getStudentDetailService',
+    'myApp.getMyWorkersService',
     // 'myApp.ngrollbar',
   ])
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

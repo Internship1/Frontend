@@ -1,0 +1,81 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Manage Company</li>
+          <li class="active">Invite Job</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section id="content">
+  <div class="container" ng-controller="getAllStudentCtrl">
+    <div class="row" ng-init="getStudentQualify()">
+      <div class="col-lg-8">
+        <div class="big-cta">
+          <div class="cta-text">
+            <h2><span>INVITE STUDENTS FOR JOB</span></h2>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col-lg-4" ng-repeat ="stud in studentqualifies">
+          <div class="row">
+            <div class="box">
+              <div class="box-gray ">
+                <h5 class="aligncenter"> <a href="#!/studentprofile/{{stud.user_id}}" title="see her/his profile">{{stud.user.full_name}}</a></h5>
+                <div class="icon" >
+                <img ng-src="http://192.168.0.13:8080/images/student/{{stud.images}}" class="aligncenter">
+                <br>
+                <br>
+                </div>
+               
+                <p style="font-size:11px"><i class="fa fa-map-marker"></i>   {{stud.address}}<br></p>
+                <i class="fa fa-envelope"></i> {{stud.user.email}}<br>
+                <i class="fa fa-phone-square"></i> {{stud.contact}}<br>
+                
+                <p style="font-size:10px">For see skills, click<a href="" class="pull-right">Details</a></p>
+              </div>
+
+              <div class="box-bottom">
+                <a href="" ng-click="postInviteJob(stud.user_id)">Invite</a>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+       
+      </div>
+      <div class="col-lg-4">
+        <aside class="right-sidebar">
+        <div class="widget">
+          <form class="form-search">
+            <input class="form-control" type="text" ng-model="q" placeholder="Search..">
+          </form>
+        </div>
+        <div class="widget">
+          <h5 class="widgetheading">Qualifies</h5>
+          <ul class="cat">
+           <li  ng-repeat="qualify in qualifies"><i class="icon-angle-right"></i><a href="#!/filterstudents/qualify/{{qualify.id}}"  ng-click="getQualify(qualify.id)">{{qualify.name}}</a><span > ({{qualify.jumlah}})</span></li>
+          </ul>
+        </div>
+
+        
+        <div class="widget">
+          <h5 class="widgetheading">Popular tags</h5>
+          <ul class="tags">
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Trends</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Internet</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Development</a></li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  </section>

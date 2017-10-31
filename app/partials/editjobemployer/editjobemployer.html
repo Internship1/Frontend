@@ -18,9 +18,9 @@
           <div class="col-md-1"></div>
           <div class="col-md-9">
           <div class="box box-info">
-            <div class="box-header with-border" >
+            <div class="box-header with-border" ng-controller="getMyProfileServiceCtrl">
               <h3 class="box-title" align="center">EDIT JOB</h3>
-              <img class="avatar center" src="assets/img/avatar.png" alt=""  />
+              <img class="avatar center" src="{{gambarlogo}}" alt=""  />
               <br>
             </div>
             <!-- /.box-header -->
@@ -70,7 +70,8 @@
                   <label class="col-sm-2 control-label">Salary</label>
                   <div class="col-sm-3">
                     <select class="form-control" name="min_salary" id="" ng-model="jobs.min_salary">
-                      <option value="">Choose min salary...</option>
+                       <option value="">Choose min salary...</option>
+                      <option value="<500000">>Rp.500.000,00</option>
                       <option value="500000">Rp.500.000,00</option>
                       <option value="1000000">Rp.1000.000,00</option>
                       <option value="2000000">Rp.2000.000,00</option>
@@ -79,36 +80,54 @@
                       <option value="5000000">Rp.5000.000,00</option>
                     </select>
                   </div>
-                  <div class="col-sm-1" align="center"><i class="fa fa-window-minimize"></i></div>
+                  <div class="col-sm-1" align="center"><i class="glyphicon glyphicon-minus"></i></div>
                   <div class="col-sm-3">
                     <select class="form-control" name="max_salary" id="" ng-model="jobs.max_salary">
-                      <option value="">Choose max salary...</option>
+                     <option value="">Choose max salary...</option>
                       <option value="1000000">Rp.1000.000,00</option>
                       <option value="2000000">Rp.2000.000,00</option>
                       <option value="3000000">Rp.3000.000,00</option>
                       <option value="4000000">Rp.4000.000,00</option>
                       <option value="5000000">Rp.5000.000,00</option>
                       <option value="10000000">Rp.10.000.000,00</option>
+                      <option value=">10000000">>Rp.10.000.000,00</option>
+                    </select>
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                   <label for="job_open" class="col-sm-2 control-label">Job Open</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="job_open" ng-model="jobs.job_open" placeholder="Job Open">
+                  <div class="col-sm-5">
+                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                      <div class="input-group">
+                          <input class="form-control" ng-model="jobs.job_open" placeholder="Choose a date"/>
+                          <span class="input-group-addon" style="cursor: pointer">
+                          <i class="fa fa-lg fa-calendar"></i>
+                          </span>
+                      </div>
+                    </datepicker>
                   </div>
-                </div>
+                </div> 
                  <div class="form-group">
                   <label for="job_close" class="col-sm-2 control-label">Job Close</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="job_close" ng-model="jobs.job_close" placeholder="Job Close">
+                  <div class="col-sm-5">
+                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                      <div class="input-group">
+                          <input class="form-control" ng-model="jobs.job_close" placeholder="Choose a date"/>
+                          <span class="input-group-addon" style="cursor: pointer">
+                          <i class="fa fa-lg fa-calendar"></i>
+                          </span>
+                      </div>
+                    </datepicker>
                   </div>
                 </div> 
                 
               </div>
-             
+             <br>
+             <br>
+             <br>
               
              
               <!-- /.box-body -->

@@ -132,15 +132,17 @@
                             <h3 class="job-title"><b>{{job.job_type.type_name}}</b></h3>
                             <div class="time" style="font-size:10.5px">{{job.created_at}}</div>
                         </div>
-                        <div class="company" style="font-size:12px">Available at {{job.job_open| date: 'dd MMMM yyyy'}} until {{job.job_close| date: 'dd MMMM yyyy'}}</div>
+                        <div class="company" style="font-size:12px"><i class="fa fa-map-marker"></i> {{job.job_position}}</div>
                     </div><!--//meta-->
                     <div class="details" >
-                        <p>Salary : {{job.min_salary| currency:"Rp."}} - {{job.max_salary|currency:"Rp."}}</p>
+                        <p>Available at {{job.job_open| date: 'dd MMMM yyyy'}} until {{job.job_close| date: 'dd MMMM yyyy'}}</p>
                         <p>Fasilitas : {{job.job_facilities}}</p>
                        <!--  <p>Deskripsi :{{job.job_description}}</p>   -->
-                         <a href="#" ng-click="" class="pull-left">Read More</a>
-                        <a href="#" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right" title="Delete"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
+                         <a href="#!/jobdetail/{{job.id}}" ng-click="getJob(job.id)" class="pull-left">Read More</a>
+
+                        <a href="" ng-click="deleteJob(job.id)" class="btn btn-large btn-success pull-right" title="Delete"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
                     <a href="#!/empprofile/{{job.id}}/update" class="btn btn-large btn-success pull-right" title="Edit"><i class="fa fa-edit"></i><i class="icon-angle-right"></i></a>
+                     <a href="#!/filterstudents/{{job.id}}" ng-click="getJob(job.id)" class="btn btn-large btn-success pull-right" title="Invite Students">    <i class="fa fa-user "></i></a>
 
                     </div>
                     <br>
@@ -190,7 +192,7 @@
                 <div class="well" ng-repeat="data in stude">
                     <span class="project-title" ><a href="#!/studentprofile/{{data.student.id}}" title="see her profile">{{data.student.full_name}}</a></span> - 
                     <span class="project-tagline" > applied your job as <b>{{data.job.jobtype.type_name}}</b></span>
-                    <span class="project-tagline" >with status <b><i><u>{{data.status.status}}</u></i></b>. Download and check her/his CV for more informations first in <i><a href="http://192.168.0.16:8080/cv/{{data.student.full_name}}.pdf">download CV</a></i></span>
+                    <span class="project-tagline" >with status <b><i><u>{{data.status.status}}</u></i></b>. Download and check her/his CV for more informations first in <i><a href="http://192.168.0.13:8080/cv/{{data.student.full_name}}.pdf">download CV</a></i></span>
                      <a href="" ng-click="declineAppli(data.id)" class="btn btn-large btn-success pull-right" title="Decline"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
                     <a href="" ng-click="acceptAppli(data.id)"  class="btn btn-large btn-success pull-right" title="Accept"><i class="fa fa-check"></i><i class="icon-angle-right"></i></a>
                     

@@ -9,7 +9,7 @@ angular.module('myApp.editCompanyProfileService', [])
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var userEditCompanyProfileUrl = 'http://192.168.0.16:8080/api/companies/';
+	var userEditCompanyProfileUrl = 'http://192.168.0.13:8080/api/companies/';
 	var perintah= "/update"
 
 	$http({
@@ -37,7 +37,7 @@ angular.module('myApp.editCompanyProfileService', [])
 			
 		};
 		// call service
-		//$http.put('http://192.168.0.16:8080/api/usersProfile/{user_id}/update', JSON.stringify(data)).then(function(response) {
+		//$http.put('http://192.168.0.13:8080/api/usersProfile/{user_id}/update', JSON.stringify(data)).then(function(response) {
 			//if(response.data)
 			//	$scope.regMsg = "Register as Employer Succesfull !";
 			//	$scope.regMsgStatus = response.status;

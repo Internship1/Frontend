@@ -2,10 +2,10 @@
 
 angular.module('myApp.getAllJobsService', [])
 
-.controller('getAllJobsCtrl', function($scope, $http, $routeParams) {
+.controller('getAllJobsCtrl', function($scope, $http, $routeParams, $rootScope) {
 	var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 
-	$scope.pagesizes= [9,18,27,36];
+	$scope.pagesizes= [6,12,18,24];
     $scope.pagesize= $scope.pagesizes[0];//jumlah baris dalam satu halaman
     $scope.currentpage= 0;//lokasi halaman saat ini
     //jumlah total halaman
@@ -48,7 +48,7 @@ angular.module('myApp.getAllJobsService', [])
 	
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.16:8080/api/jobs/all'
+		url: 'http://192.168.0.13:8080/api/jobs/all'
 		
 	}).then(function successCallBack(response) {
 		$scope.jobs = response.data.jobs;
@@ -111,7 +111,7 @@ angular.module('myApp.getAllJobsService', [])
 
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.16:8080/api/countjob'
+		url: 'http://192.168.0.13:8080/api/countjob'
 	}).then(function successCallBack(response) {
 		$scope.jb = response.data.jobs;
 		
@@ -125,7 +125,7 @@ angular.module('myApp.getAllJobsService', [])
 	
 	$scope.getType = function (jobtype_id) {
 		var jobtype_id = $routeParams.jobtype_id;
-		var tipeUrl = 'http://192.168.0.16:8080/api/jobs/type/';
+		var tipeUrl = 'http://192.168.0.13:8080/api/jobs/type/';
 		//call service
 		
 	$http({
@@ -151,7 +151,7 @@ angular.module('myApp.getAllJobsService', [])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var applyUrl = 'http://192.168.0.16:8080/api/applies/store/';
+		var applyUrl = 'http://192.168.0.13:8080/api/applies/store/';
 
 		var data ={
 			id:id,
@@ -178,5 +178,11 @@ angular.module('myApp.getAllJobsService', [])
       $scope.selectedPerson = person;
     }
 
+    $scope.getJob = function(job_id){
+        $rootScope.job_id = job_id;
+        console.log($rootScope.job_id);
+    
+   
+    };
 	
 });

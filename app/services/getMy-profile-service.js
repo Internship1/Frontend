@@ -10,10 +10,10 @@ angular.module('myApp.getMyProfileService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var userProfileUrl = 'http://192.168.0.16:8080/api/users/';
-	var userCompanyUrl = 'http://192.168.0.16:8080/api/companies/';
-	var userJobsUrl = 'http://192.168.0.16:8080/api/employerJobs/';
-	var applyUrl = 'http://192.168.0.16:8080/api/applies/employer/';
+	var userProfileUrl = 'http://192.168.0.13:8080/api/users/';
+	var userCompanyUrl = 'http://192.168.0.13:8080/api/companies/';
+	var userJobsUrl = 'http://192.168.0.13:8080/api/employerJobs/';
+	var applyUrl = 'http://192.168.0.13:8080/api/applies/employer/';
 
 	//agar user tetap mendapatkan token di header
 //$http.defaults.headers.common.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem("KEY_TOKEN"));
@@ -30,7 +30,7 @@ angular.module('myApp.getMyProfileService', [])
 		$scope.company_website = response.data.user.company.company_website;
 		$scope.company_description = response.data.user.company.description;
 		var company_logo = response.data.user.company.company_logo;
-		$scope.gambarlogo = 'http://192.168.0.16:8080/images/company/' + company_logo;
+		$scope.gambarlogo = 'http://192.168.0.13:8080/images/company/' + company_logo;
 		//$scope.address = response.data.user.user_profile.address;
 		//$scope.contact = response.data.user.user_profile.contact;
 		//$scope.description = response.data.user.student_profile.description;
@@ -196,7 +196,7 @@ $scope.pagesizes= [3,6,9,12];
 	$scope.deleteJob = function(id){
 		
 		
-		var urlDelete = 'http://192.168.0.16:8080/api/jobs/';
+		var urlDelete = 'http://192.168.0.13:8080/api/jobs/';
 		var hapus = "/delete";
 		$http.delete(urlDelete+id+hapus).then(function(response){
 			
@@ -207,8 +207,8 @@ $scope.pagesizes= [3,6,9,12];
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var statusjobUrl = 'http://192.168.0.16:8080/api/applies/';
-		var mailUrl = 'http://192.168.0.16:8080/api/outbox/store';
+		var statusjobUrl = 'http://192.168.0.13:8080/api/applies/';
+		var mailUrl = 'http://192.168.0.13:8080/api/outbox/store';
 		var perintah = "/update";
 		var data = {
 			status_id:2
@@ -241,7 +241,7 @@ $scope.pagesizes= [3,6,9,12];
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var statusjobUrl = 'http://192.168.0.16:8080/api/applies/';
+		var statusjobUrl = 'http://192.168.0.13:8080/api/applies/';
 		var perintah = "/update";
 		var data = {
 			status_id:3
@@ -265,6 +265,38 @@ $scope.pagesizes= [3,6,9,12];
 			$scope.jobMsgStatusText = response.statusText;
 		});
 
+
+	};
+
+
+
+	 $scope.getJob = function(job_id){
+        $rootScope.job_id = job_id;
+        console.log($rootScope.job_id);
+    
+   
+    };
+
+    $scope.getJobDetail = function (id) {
+	
+		var compUrl = 'http://192.168.0.13:8080/api/jobs/';
+		//call service
+		
+	$http({
+		method: "GET",
+		url: compUrl+$rootScope.job_id
+		
+	}).then(function successCallBack(response) {
+		$scope.jobs = response.data.job;
+		$scope.qualifies = response.data.qualify;
+		console.log($scope.jobs);
+	}, function errorCallBack(response) {
+		$scope.errorMessage = 'Ops, Something went wrong when displaying data!';
+		$scope.status = response.status;
+		$scope.statusText = response.statusText;
+	});
+
+	
 
 	};
 });

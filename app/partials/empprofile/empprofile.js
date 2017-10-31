@@ -15,6 +15,12 @@ angular.module('myApp.empprofile', ['ngRoute'])
   }).when('/studentprofile/:id', {
     templateUrl: 'partials/studentprofileselected/studentprofileselected.html',
     controller: 'studentprofileselectedCtrl'
+  }).when('/filterstudents/:id', {
+    templateUrl: 'partials/filterstudents/filterstudents.html',
+    controller: 'filterstudentsCtrl'
+  }).when('/jobdetail/:id', {
+    templateUrl: 'partials/jobemploydetail/jobemploydetail.html',
+    controller: 'jobemploydetailCtrl'
   });
 }])
 

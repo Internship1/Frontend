@@ -1,0 +1,198 @@
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+          <li class="active">Manage Company</li>
+          <li class="active">Job Detail</li>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section>
+  <div id="content" ng-controller="getJobDetailCtrl">
+  <div class="container" ng-init="getJobDetail()">
+    <div class="row">
+        
+       <div class="sidebar-wrapper" > 
+        <!--ng-controller="getMyProfileServiceCtrl"-->
+        
+            <div class="profile-container"  >
+           
+                <img class="profile avatar" ng-src="{{gambarlogo}}" alt="" /><br>
+                <a href="#!/editprofileemp"><i class="fa fa-pencil"></i> Change Picture</a>
+                <br>
+                <br>
+                <h1 class="name"> {{jobs.employer.company.company_name}} </h1>
+                <h3 class="tagline" > {{jobs.employer.username}} </h3><br>
+<!--                 <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                </fieldset> -->
+                <a class="nav-link" href="#!/editprofileemp"><img class="icon-default" src="assets/icons/settings-icon.png"></a><br><br>
+
+                <a class="nav-link" href="#!/composemail"><img class="icon-default" src="assets/icons/mail.png"></a><br><br>
+                <button type="follow">Follow</button><br>
+            </div><!--//profile-container-->
+             <div class="pull-right">
+                    <button class="btn-success" title="Edit Company Informations"><a href="#!/empprofile/editprofilecomp"><i class="fa fa-pencil"></i></a></button>
+                </div>
+            <div class="contact-container container-block" ng-controller="getJobDetailCtrl">
+                <p> {{jobs.employer.company.company_website}} </p>
+                <p><a href="mailto: {{ email }}"> {{ jobs.employer.company.company_email }} </a></p>
+                <p><i class="fa fa-phone-square"></i> {{ jobs.employer.company.company_contact }} </p>
+                <p><i class="fa fa-map-marker"></i> {{ jobs.employer.company.company_address }} </p>
+                
+                <p><strong> Member Since : </strong> {{ jobs.employer.company.created_at }} </p>
+            </div>
+<!--             <div class="education-container container-block">
+                <h2 class="container-block-title">Education</h2>
+                <div class="item">
+                    <h4 class="degree">MSc in Computer Science</h4>
+                    <h5 class="meta">University of London</h5>
+                    <div class="time">2011 - 2012</div>
+                </div>
+                <div class="item">
+                    <h4 class="degree">BSc in Applied Mathematics</h4>
+                    <h5 class="meta">Bristol University</h5>
+                    <div class="time">2007 - 2011</div>
+                </div>
+            </div> -->
+            
+        </div><!--//sidebar-wrapper-->
+        
+
+        
+        <div class="main-wrapper">
+            <div class="follow"> 
+                <ul>
+                <li>Followers</li>
+                <li>Following</li>                
+                </ul>
+            </div>
+        
+
+            <div class="tab">
+              <!--<button class="tablinks" onclick="openProfile(event, 'Timeline')" id="defaultOpen">Timeline</button>-->
+              <button class="tablinks" onclick="openProfile(event, 'jobs')" id="defaultOpen">Job Detail</button>
+             
+            </div>
+            
+            <!--<div id="Timeline" class="tabcontent">
+              <h3>nana</h3>
+              <p>Ini adalah Timeline</p>
+            </div>-->
+
+            <div id="jobs" class="tabcontent" >
+              <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Job Detail</h2>
+                <div class="row">
+                <div class="col-md-6">
+                    
+                </div>
+                
+                 <div class="col-md-4 pull-right" >
+               
+            </div>
+            </div>
+                
+                <div class="item" >
+                <div class="well">
+                    <div class="meta" >
+                        <div class="upper-row" >
+                            <h3 class="job-title"><b>{{jobs.job_type.type_name}}</b></h3>
+                            <div class="time" style="font-size:10.5px">{{jobs.created_at}}</div>
+                        </div>
+                        <div class="company" style="font-size:12px"><i class="fa fa-map-marker"></i> {{jobs.job_position}}</div>
+                    </div><!--//meta-->
+                    <div class="details" >
+                    <table >
+                        <tr>
+                          <th style="width: 200px"></th>
+                          <th style="width: 25px"></th>
+                          <th style="width: 900px"></th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td><label for="email" class=" control-label">Available at</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_open| date: 'dd MMMM yyyy'}} until {{jobs.job_close| date: 'dd MMMM yyyy'}}</td>
+                        </tr>
+                        
+                         <tr>
+                          <td><label for="email" class=" control-label">Salary</label></td>
+                          <td>:</td>
+                          <td>{{jobs.min_salary| currency:"Rp."}} - {{jobs.max_salary|currency:"Rp."}}</td>
+                        </tr>
+                         <tr>
+                          <td><label for="contact" class=" control-label">Facilities</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_facilities}}</td>
+                        </tr>
+                        <tr>
+                          <td><label for="address" class=" control-label">Jobs Description</label></td>
+                          <td>:</td>
+                          <td>{{jobs.job_description}}</td>
+                        </tr>
+                        
+                         <tr>
+                          <td><label for="description" class=" control-label">Qualifies need</label></td>
+                          <td>:</td>
+                          <td > 
+                              <ul>
+                                <li ng-repeat="qualify in qualifies">{{qualify.name}}</li> 
+                              </ul>
+                          </td>
+                        </tr>
+                    </table>
+
+                        <div class="row" >
+                            <a  class="btn btn-large btn-success pull-right" href="#!/empprofile">Back</a>
+                        </div>
+
+                    </div>
+                    <br>
+                     
+                   
+                    </div>
+                    
+                    
+                  </div><!--//details-->
+
+
+                     
+                    <br>
+               
+                
+                
+            </section><!--//section-->
+            </div>
+
+            
+            
+            
+             
+            
+            
+            
+        </div><!--//main-body-->
+
+    </div>
+  </div>
+  </div>
+      
+  </section>
+
+<script src="assets/js/bootstrap.min.js"></script>
+
