@@ -5,7 +5,7 @@ angular.module('myApp.getAllPostingService', [])
 .controller('getAllPostingCtrl', function($scope, $http) {
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/posts/all'
+		url: 'http://192.168.0.11:8080/api/posts/all'
 	}).then(function successCallBack(response) {
 		$scope.posting = response.data.posts;
 		console.log($scope.posting);
@@ -20,7 +20,7 @@ angular.module('myApp.getAllPostingService', [])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var postsUrl = 'http://192.168.0.13:8080/api/posts/store';
+		var postsUrl = 'http://192.168.0.11:8080/api/posts/store';
 		
 
 

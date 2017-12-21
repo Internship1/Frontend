@@ -9,7 +9,7 @@ angular.module('myApp.selectcompany', [])
 	
 	$scope.getCompany = function (id) {
 		var id = $routeParams.id;
-		var compUrl = 'http://192.168.0.13:8080/api/companies/';
+		var compUrl = 'http://192.168.0.11:8080/api/companies/';
 		//call service
 		$scope.pagesizes= [3,6,9,12];
     $scope.pagesize= $scope.pagesizes[0];//jumlah baris dalam satu halaman
@@ -60,7 +60,7 @@ angular.module('myApp.selectcompany', [])
 	}).then(function successCallBack(response) {
 		$scope.comp = response.data.employerJobs;
 		var company_logo = $scope.comp.company.company_logo;
-		$scope.gambarlogo = 'http://192.168.0.13:8080/images/company/' + company_logo;
+		$scope.gambarlogo = 'http://192.168.0.11:8080/images/company/' + company_logo;
 		var select  = response.data.employerJobs.job;
 		
 		

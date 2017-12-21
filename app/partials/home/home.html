@@ -131,7 +131,7 @@
           <h5 class="widgetheading">Company Joined</h5>
           <ul class="recent" style="font-size:11px">
             <li ng-repeat="comp in companiestData | orderBy: '-created_at'| limitTo: 7">
-            <img src="assets/img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
+             <img ng-src="http://192.168.0.11:8080/images/company/{{comp.company_logo}}" width="60" height="60" class="pull-left" alt="" />
             <h6><a href="#!/categoryjob/company/{{comp.employer_id}}">{{comp.company_name}}</a></h6>
             <i class="fa fa-map-marker"></i> {{comp.company_address}}<br>
             <i class="fa fa-phone-square"></i> {{comp.company_contact}}<br>

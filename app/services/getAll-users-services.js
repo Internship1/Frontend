@@ -5,7 +5,7 @@ angular.module('myApp.getAllUsersService', [])
 .controller('getAllUsersCtrl', function($scope, $http) {
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/users/all'
+		url: 'http://192.168.0.11:8080/api/users/all'
 	}).then(function successCallBack(response) {
 		
 		$scope.users = response.data.users;

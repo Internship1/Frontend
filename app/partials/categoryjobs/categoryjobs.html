@@ -28,7 +28,7 @@
               <div class="box-gray ">
                 <h5 class="aligncenter">{{job.job_type.type_name}}</h5>
                 <div class="icon" >
-                <img ng-src="http://192.168.0.13:8080/images/company/{{job.employer.company.company_logo}}" class="aligncenter">
+                <img ng-src="http://192.168.0.11:8080/images/company/{{job.employer.company.company_logo}}" class="aligncenter">
                 <br>
                 <br>
                 </div>
@@ -85,7 +85,7 @@
           <h5 class="widgetheading">Latest jobs</h5>
           <ul class="recent">
             <li ng-repeat="show in jobs  | orderBy: '-created_at' | limitTo: 6">
-            <img ng-src="http://192.168.0.13:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
+            <img ng-src="http://192.168.0.11:8080/images/company/{{show.employer.company.company_logo}}" width="50" height="50" class="pull-left" alt="" />
            
             <a href="#!/categoryjob/company/{{show.employer_id}}" style="font-size:11px">{{ show.employer.company.company_name}}</a>
              <p style="font-size:10.5px">

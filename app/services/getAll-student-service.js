@@ -5,7 +5,7 @@ angular.module('myApp.getAllStudentService', [])
 .controller('getAllStudentCtrl', function($scope, $http, $rootScope) {
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/users/allStudent'
+		url: 'http://192.168.0.11:8080/api/users/allStudent'
 	}).then(function successCallBack(response) {
 		$scope.studentData = response.data.users;
 	}, function errorCallBack(response) {
@@ -57,7 +57,7 @@ $scope.pagesizes= [9,18,27,36];
     }
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/usersProfile/all'
+		url: 'http://192.168.0.11:8080/api/usersProfile/all'
 	}).then(function successCallBack(response) {
 		$scope.students = response.data.usersprofile;
 		$scope.pagenumber= Math.ceil($scope.students.length / $scope.pagesize);
@@ -71,7 +71,7 @@ $scope.pagesizes= [9,18,27,36];
 
     $http({
         method: "GET",
-        url: 'http://192.168.0.13:8080/api/usersProfile/countqualify'
+        url: 'http://192.168.0.11:8080/api/usersProfile/countqualify'
     }).then(function successCallBack(response) {
         $scope.qualifies = response.data.qualifies;
     }, function errorCallBack(response) {
@@ -86,7 +86,7 @@ $rootScope.qualifyid=qualifyid;
 };
 $scope.getStudentQualify=function(qualifyid){
     
-    var studentqualifiesUrl = 'http://192.168.0.13:8080/api/usersProfile/qualify/';
+    var studentqualifiesUrl = 'http://192.168.0.11:8080/api/usersProfile/qualify/';
    
 
     $http({
@@ -106,7 +106,7 @@ $scope.getStudentQualify=function(qualifyid){
         var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
         var decoded = jwt_decode(tokenBearer);
         var userEndPoint = decoded.sub;
-        var mailUrl = 'http://192.168.0.13:8080/api/invite/store/';
+        var mailUrl = 'http://192.168.0.11:8080/api/invite/store/';
         
    
 

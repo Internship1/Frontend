@@ -5,7 +5,7 @@ angular.module('myApp.getJobDetailService', [])
 .controller('getJobDetailCtrl', function($scope, $http, $rootScope) {
 	$scope.getJobDetail = function (id) {
 	
-		var compUrl = 'http://192.168.0.13:8080/api/jobs/';
+		var compUrl = 'http://192.168.0.11:8080/api/jobs/';
 		//call service
 		
 	$http({
@@ -15,9 +15,9 @@ angular.module('myApp.getJobDetailService', [])
 	}).then(function successCallBack(response) {
 		$scope.jobs = response.data.job;
 		var company_logo = response.data.job.employer.company.company_logo;
-		$scope.gambarlogo = 'http://192.168.0.13:8080/images/company/' + company_logo;
+		$scope.gambarlogo = 'http://192.168.0.11:8080/images/company/' + company_logo;
 		$scope.qualifies = response.data.qualify;
-		console.log($scope.jobs);
+		console.log($scope.qualifies);
 	}, function errorCallBack(response) {
 		$scope.errorMessage = 'Ops, Something went wrong when displaying data!';
 		$scope.status = response.status;

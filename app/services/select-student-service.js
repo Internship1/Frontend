@@ -9,8 +9,8 @@ angular.module('myApp.studentprofileselected', [])
 	
 	$scope.getStudent = function (id) {
 		var id = $routeParams.id;
-		var studentUrl = 'http://192.168.0.13:8080/api/users/';
-		var studentProfileUrl = 'http://192.168.0.13:8080/api/usersProfile/';
+		var studentUrl = 'http://192.168.0.11:8080/api/users/';
+		var studentProfileUrl = 'http://192.168.0.11:8080/api/usersProfile/';
 		//call service
 		
 	$http({
@@ -34,7 +34,7 @@ angular.module('myApp.studentprofileselected', [])
 	}).then(function successCallBack(response) {
 		$scope.users = response.data.qualify;
 		$scope.images= response.data.userprofile.images;
-		$scope.gambar = 'http://192.168.0.13:8080/images/student/'+$scope.images;
+		$scope.gambar = 'http://192.168.0.11:8080/images/student/'+$scope.images;
 		$scope.qualifies=[];
 		var k=0;
 		for (var i = 0; i < $scope.users .length; i++) {

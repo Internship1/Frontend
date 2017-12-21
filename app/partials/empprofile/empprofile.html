@@ -192,7 +192,7 @@
                 <div class="well" ng-repeat="data in stude">
                     <span class="project-title" ><a href="#!/studentprofile/{{data.student.id}}" title="see her profile">{{data.student.full_name}}</a></span> - 
                     <span class="project-tagline" > applied your job as <b>{{data.job.jobtype.type_name}}</b></span>
-                    <span class="project-tagline" >with status <b><i><u>{{data.status.status}}</u></i></b>. Download and check her/his CV for more informations first in <i><a href="http://192.168.0.13:8080/cv/{{data.student.full_name}}.pdf">download CV</a></i></span>
+                    <span class="project-tagline" >with status <b><i><u>{{data.status.status}}</u></i></b>. Download and check her/his CV for more informations first in <i><a href="http://192.168.0.11:8080/cv/{{data.student.full_name}}.pdf">download CV</a></i></span>
                      <a href="" ng-click="declineAppli(data.id)" class="btn btn-large btn-success pull-right" title="Decline"><i class="fa fa-times"> </i><i class="icon-angle-right"></i></a>
                     <a href="" ng-click="acceptAppli(data.id)"  class="btn btn-large btn-success pull-right" title="Accept"><i class="fa fa-check"></i><i class="icon-angle-right"></i></a>
                     

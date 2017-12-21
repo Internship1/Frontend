@@ -5,7 +5,7 @@ angular.module('myApp.getAllTosService', [])
 .controller('getAllTosCtrl', function($scope, $http) {
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/tos/all'
+		url: 'http://192.168.0.11:8080/api/tos/all'
 	}).then(function successCallBack(response) {
 		$scope.tos = response.data.tos;
 		console.log($scope.tos);

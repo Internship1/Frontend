@@ -8,7 +8,7 @@ angular.module('myApp.notifService', [])
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var url ='http://192.168.0.13:8080/api/notification/student/';
+	var url ='http://192.168.0.11:8080/api/notification/student/';
 
 	
 	$http({

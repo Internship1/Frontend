@@ -5,7 +5,7 @@ angular.module('myApp.getStudentDetailService', [])
 .controller('getStudentDetailCtrl', function($scope, $http, $rootScope) {
 	$scope.getStudentbDetail = function (id) {
 	
-		var studentUrl = 'http://192.168.0.13:8080/api/usersProfile/';
+		var studentUrl = 'http://192.168.0.11:8080/api/usersProfile/';
 		//call service
 		
 	$http({
@@ -15,7 +15,7 @@ angular.module('myApp.getStudentDetailService', [])
 	}).then(function successCallBack(response) {
 		$scope.student = response.data.userprofile;
 		var foto = response.data.userprofile.images;
-		$scope.gambarlogo = 'http://192.168.0.13:8080/images/student/' + foto;
+		$scope.gambarlogo = 'http://192.168.0.11:8080/images/student/' + foto;
 		$scope.qualifies = response.data.qualify;
 		console.log($scope.student);
 	}, function errorCallBack(response) {

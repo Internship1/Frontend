@@ -51,7 +51,7 @@ var app = angular
     'myApp.angularjs-dropdown-multiselect',
 
     //factory
-    'myApp.headerstoken',
+    // 'myApp.headerstoken',
     // 'myApp.isLoggedIn',
      // 'myApp.Session',
 

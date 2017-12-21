@@ -10,8 +10,8 @@ angular.module('myApp.getMyMailService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var inboxUrl = 'http://192.168.0.13:8080/api/inbox/';
-	var outboxUrl = 'http://192.168.0.13:8080/api/outbox/';
+	var inboxUrl = 'http://192.168.0.11:8080/api/inbox/';
+	var outboxUrl = 'http://192.168.0.11:8080/api/outbox/';
 
 
 	$http({
@@ -42,7 +42,7 @@ angular.module('myApp.getMyMailService', [])
 
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/users/all'
+		url: 'http://192.168.0.11:8080/api/users/all'
 	}).then(function successCallBack(response) {
 		
 		$scope.users = response.data.users;
@@ -68,7 +68,7 @@ angular.module('myApp.getMyMailService', [])
 		var tokenBearer = JSON.parse(localStorage.getItem("KEY_TOKEN"));
 		var decoded = jwt_decode(tokenBearer);
 		var userEndPoint = decoded.sub;
-		var sendMailUrl = 'http://192.168.0.13:8080/api/outbox/store';
+		var sendMailUrl = 'http://192.168.0.11:8080/api/outbox/store';
 		for (var i = 0; i < $scope.itemList.length;  i++) {
 		var data = {
 			sender_id:decoded.sub,
@@ -103,7 +103,7 @@ angular.module('myApp.getMyMailService', [])
 	$scope.deleteInbox = function(id){
 		
 		
-		var urlDelete = 'http://192.168.0.13:8080/api/inbox/';
+		var urlDelete = 'http://192.168.0.11:8080/api/inbox/';
 		var hapus = "/delete";
 		var id=id;
 		$http.delete(urlDelete+id+hapus).then(function(response){
@@ -115,7 +115,7 @@ angular.module('myApp.getMyMailService', [])
 	$scope.deleteOutbox = function(id){
 		
 		
-		var urloutbox = 'http://192.168.0.13:8080/api/outbox/';
+		var urloutbox = 'http://192.168.0.11:8080/api/outbox/';
 		var hapus = "/delete";
 		var id=id;
 		$http.delete(urloutbox+id+hapus).then(function(response){

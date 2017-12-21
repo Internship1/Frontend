@@ -50,7 +50,7 @@ angular.module('myApp.getMyWorkersService', [])
 
 	$http({
 		method: "GET",
-		url: 'http://192.168.0.13:8080/api/applies/worker/'+ userEndPoint
+		url: 'http://192.168.0.11:8080/api/applies/worker/'+ userEndPoint
 	}).then(function successCallBack(response) {
 		$scope.workers = response.data.apply;
 
@@ -65,7 +65,7 @@ angular.module('myApp.getMyWorkersService', [])
 	$scope.deleteWorker = function(id){
 		
 		
-		var urlDelete = 'http://192.168.0.13:8080/api/applies/';
+		var urlDelete = 'http://192.168.0.11:8080/api/applies/';
 		var hapus = "/delete";
 		$http.delete(urlDelete+id+hapus).then(function(response){
 			if (response.data)

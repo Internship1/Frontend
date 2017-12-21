@@ -10,9 +10,9 @@ angular.module('myApp.getMyProfileStudentService', [])
 	var userEndPoint = decoded.sub;
 
 
-	var usersUrl = 'http://192.168.0.13:8080/api/users/';
-	var userProfileUrl = 'http://192.168.0.13:8080/api/usersProfile/';
-	var applyJobsUrl = 'http://192.168.0.13:8080/api/applies/student/';
+	var usersUrl = 'http://192.168.0.11:8080/api/users/';
+	var userProfileUrl = 'http://192.168.0.11:8080/api/usersProfile/';
+	var applyJobsUrl = 'http://192.168.0.11:8080/api/applies/student/';
 	
 
 	$http({
@@ -21,7 +21,7 @@ angular.module('myApp.getMyProfileStudentService', [])
 	}).then(function successCallBack(response) {
 		$scope.student = response.data.user;
 		var images = response.data.user.user_profile.images;
-		$scope.gambar = 'http://192.168.0.13:8080/images/student/' + images;
+		$scope.gambar = 'http://192.168.0.11:8080/images/student/' + images;
 		$scope.contact= response.data.user.user_profile.contact;
 
 			if ($scope.contact == null){

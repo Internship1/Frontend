@@ -23,9 +23,9 @@ angular.module('myApp.editStudentProfileService', ["checklist-model","angularFil
 	var decoded = jwt_decode(tokenBearer);
 	console.log(decoded.sub);
 	var userEndPoint = decoded.sub;
-	var userEditStudentProfileUrl = 'http://192.168.0.13:8080/api/usersProfile/';
-	var userEditProfileUrl = 'http://192.168.0.13:8080/api/users/';
-	var qualifiesUrl = 'http://192.168.0.13:8080/api/qualifies/all';
+	var userEditStudentProfileUrl = 'http://192.168.0.11:8080/api/usersProfile/';
+	var userEditProfileUrl = 'http://192.168.0.11:8080/api/users/';
+	var qualifiesUrl = 'http://192.168.0.11:8080/api/qualifies/all';
 	var perintah= "/update"
 	
 	
